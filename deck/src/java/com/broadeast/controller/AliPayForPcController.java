@@ -1,0 +1,440 @@
+package com.broadeast.controller;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.log4j.Logger;
+import org.nutz.lang.Lang;
+import org.nutz.trans.Atom;
+import org.nutz.trans.Trans;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.broadeast.bean.SitePriceConfigAll;
+import com.broadeast.entity.PortalUser;
+import com.broadeast.entity.SiteCustomerInfo;
+import com.broadeast.entity.SitePaymentRecord;
+import com.broadeast.entity.SitePriceConfig;
+import com.broadeast.handler.JsonView;
+import com.broadeast.service.impl.SchoolPaymentService;
+import com.broadeast.service.impl.SitePaymentRecordsService;
+import com.broadeast.service.impl.SiteService;
+import com.broadeast.service.impl.UserService;
+import com.broadeast.util.DateUtil;
+import com.broadeast.util.PropertiesParam;
+import com.util.thirdpay.Pay;
+import com.wap.alipay.pcConfig.AlipayConfig;
+import com.wap.alipay.pcUtil.AlipayNotify;
+import com.wap.alipay.pcUtil.AlipaySubmit;
+
+/**
+ * 充值   controller
+ * 
+ * @author songyanbiao
+ * 此类主要是处理pc端的支付宝支付
+ */
+
+@Controller
+@RequestMapping("rechargeLog")
+public class AliPayForPcController {
+	private static Logger logger = Logger.getLogger(AliPayForPcController.class);
+
+	@Autowired
+	private SchoolPaymentService schoolPaymentService;
+
+	@Autowired
+	private SitePaymentRecordsService sitePaymentRecordsService;
+
+	@Autowired
+	private SiteService siteService;
+	@Autowired
+	private UserService userService;
+
+	/**
+	 * 定义几个错误 orderNumNotExist错误,订单号不存在。
+	 * userIdNotLawful错误,订单号中的userId不是用我们的加密算法生成的 paramsIsNull错误,参数为空
+	 * 
+	 */
+	private final String orderNumNotExist = "-----------------订单号不存在--------------";
+	private final String userIdNotLawful = "-----------------订单号中的userId不是用我们的加密算法生成的--------------";
+	private final String paramsIsNull = "-----------------参数为空--------------";
+	private final String moneyError = "-------------------充值的金额错误";
+
+	/** 东方高盛的支付宝账号,写死的 */
+	private final String seller_email = "support@solarsys.cn";
+	private String errorMsg = "好像出错了<br /><p><a href='javascript:history.back(-1);'>返回</a></p>";
+
+	/**
+	 * 调用我支付宝的用户必须在他本地调用该方法 然后提交到我的alipay
+	 * */
+	@RequestMapping("gopay")
+	public String pp(HttpServletRequest request, HttpServletResponse response,
+			RedirectAttributes re) throws ServletException, IOException {
+		Map<String, String> map = new HashMap<String, String>(7);
+
+		PortalUser user = (PortalUser) request.getSession().getAttribute(
+				"proUser");// 添加用户到session
+		SitePriceConfigAll siteConfigAll = (SitePriceConfigAll) request
+				.getSession().getAttribute("siteAll");// 添加场所所有收费规则session
+		if (user == null || siteConfigAll == null) {
+			return this.errorMsg;
+		}
+
+		// 抽取必填参数
+		map.put("userId", user.getId() + "");// 用户Id
+		map.put("storeId", siteConfigAll.getSiteInof().getId() + "");// 场所Id
+		map.put("tenantId", siteConfigAll.getSiteInof().getUser_id()+"");//商户id
+		map.put("payType", request.getParameter("priceConfig"));// 场所收费配置Id
+		map.put("buyNum", request.getParameter("nums"));// 购买数量
+		map.put("amount", request.getParameter("amount"));// 总金额
+		map.put("priceNum",request.getParameter("price_num"));//套餐
+		String giveNum=request.getParameter("addMealNum");//赠送的套餐数量
+		String giveUnit=request.getParameter("addMealUnit");//赠送的套餐单位
+		map.put("addMealNum",giveNum);
+		map.put("addMealUnit",giveUnit);
+		map.put("mealType",request.getParameter("mealType"));//选择的套餐类型 1----时间，2-----流量
+		
+		SitePriceConfig scf = siteService.getSitePriceInfos(siteConfigAll
+				.getSiteInof().getId(), Integer.parseInt(map.get("payType")));
+		String myNum = Pay.getUuidOrderNumFromUserId(String.valueOf(user
+				.getId())); // 根据userId生成订单号
+
+		String total_fee = new String(request.getParameter("amount"));
+		String subject = new String(request.getParameter("subject"));
+		String siteName=siteService.getSiteName(siteConfigAll.getSiteInof().getId());
+		map.put("priceName",subject);//套餐名称
+		re.addAttribute("myNum", myNum); // 订单号
+		re.addAttribute("seller_email", seller_email);
+		re.addAttribute("subject","校园卡会员充值,按" + subject+"充值("+siteName+")"); // 用途
+		re.addAttribute("total_fee", total_fee); // 金额
+		request.getSession().setAttribute("map", map);
+		return "redirect:/rechargeLog/alipayapi";
+	}
+
+	//
+
+	/** 接收充值信息的提交 
+	 * @throws IOException */
+	@RequestMapping("alipayapi")
+	public String alipayapi(HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
+
+		Map<String,String> map = (Map<String,String>) request.getSession().getAttribute("map");
+		Iterator<Map.Entry<String, String>> it = map.entrySet().iterator();
+		  while (it.hasNext()) {
+		   Map.Entry<String, String> entry = it.next();
+		  }
+		// 校验
+		String checkResult = schoolPaymentService.paramsCheck(map);
+		if ("ok".equals(checkResult)) {// 校验通过
+			SitePriceConfigAll siteConfigAll = (SitePriceConfigAll) request
+					.getSession().getAttribute("siteAll");
+			SitePriceConfig scf = siteService.getSitePriceInfos(siteConfigAll
+					.getSiteInof().getId(), Integer.parseInt((String) map
+					.get("payType")));
+			
+			
+			//根据和当前时间的比较计算到期时间
+			PortalUser pu =(PortalUser) request.getSession().getAttribute("proUser");
+			SiteCustomerInfo scii =siteService.getExpirationTimeByProuserid(pu.getId(),siteConfigAll.getSiteInof().getId());
+			//计算用户到期时间或者流量
+			String riqi=siteService.getUserCustomer(scii, scf, map);
+			if("1".equals(map.get("mealType"))){//用户购买的是时间套餐
+				map.put("expireDate",riqi);
+			}else{
+				map.put("expireFlow",riqi);
+			}
+			String orderNum = request.getParameter("myNum");			
+			// 保存支付信息for (String key : map.keySet()) {
+			
+			schoolPaymentService.savePaymentinfo(orderNum, map,1);
+			String out_trade_no = String.valueOf(orderNum);
+			// 根据订单号,获取userId--------------------------------------------
+			String strTemp = out_trade_no.substring(out_trade_no.length() - 2);
+			Integer len = 0;
+			try {
+				len = Integer.valueOf(strTemp);
+			} catch (Exception e) {
+				e.printStackTrace();
+				logger.error("订单号错误,转换后两位时错误--RechargeLogController-167行");
+				return errorMsg;
+			}
+			String userId = out_trade_no.substring(2, 2 + len);
+			// 验证userId是否指数字
+			try {
+				int num = Integer.valueOf(userId);
+			} catch (Exception e) {
+				e.printStackTrace();
+				logger.error("--支付时没有userId,或者userId错误---RechargeLogController-176行");
+				return errorMsg;
+			}
+
+			String newUserId = "";
+
+			// 循环结束得到
+			for (int i = 0; i < userId.length(); i++) {
+				int x = Integer.valueOf(userId.substring(i, i + 1));
+				int y = 0;
+				if (x + 10 - 9 == 10) {
+					y = 0;
+				} else {
+					y = x + 10 - 9;
+				}
+				newUserId += String.valueOf(y);
+			}
+
+			PortalUser user = userService.getPortalUserById(Integer
+					.valueOf(newUserId)); // 判读该userId是否存在
+			if (user == null) {
+				logger.error(this.userIdNotLawful+"-----RechargeLogController-197行");
+				//System.out.println(this.userIdNotLawful);
+				return errorMsg;
+			}
+			// ----------------------------------------判读订单号是否合法结束
+			// 支付类型
+			String payment_type = "1";
+
+			String notify_url = PropertiesParam.DeckUrl+"deck/rechargeLog/notify";
+			String return_url = PropertiesParam.DeckUrl+"deck/w/resultPage";
+			//String return_url = "http://localhost/deck/pc/result.jsp";
+			// 卖家支付宝帐户
+			String seller_email = new String(request.getParameter("seller_email"));
+			// 订单名称 "校园卡会员充值,按"+(0==scf.getPrice_type()?"小时":(1==scf.getPrice_type()?"天":"月"));
+			String subject = request.getParameter("subject");
+			// 必填
+			// 付款金额
+			String total_fee = new String(request.getParameter("total_fee"));
+			// 防钓鱼时间戳
+			String anti_phishing_key = "";
+
+			// 客户端的IP地址
+			String exter_invoke_ip = "";
+
+			if (seller_email == null || "".equals(seller_email)
+					|| total_fee == null || "".equals(total_fee)) {
+				return this.errorMsg;
+			}
+
+			// 在库中生成订单号,生成一条记录----------------------start
+			if (orderNum == null || "".equals(orderNum)) {
+				// 退出
+				return errorMsg;
+			}
+			// 把请求参数打包成数组
+			Map<String, String> sParaTemp = new HashMap<String, String>();
+			sParaTemp.put("service", "create_direct_pay_by_user");
+			sParaTemp.put("partner", AlipayConfig.partner);
+			sParaTemp.put("_input_charset", AlipayConfig.input_charset);
+			sParaTemp.put("payment_type", payment_type);
+			sParaTemp.put("notify_url", notify_url);
+			sParaTemp.put("return_url", return_url);
+			sParaTemp.put("seller_email", this.seller_email); // 东方高盛的支付宝账号,写死的
+			sParaTemp.put("out_trade_no", out_trade_no); // 我自己生成的订单号
+			sParaTemp.put("subject", subject);
+			sParaTemp.put("total_fee", total_fee);
+			sParaTemp.put("anti_phishing_key", anti_phishing_key);
+			sParaTemp.put("exter_invoke_ip", exter_invoke_ip);
+			Map<String, String> sPara = AlipaySubmit.buildRequestPara(sParaTemp);
+			request.getSession().setAttribute("sPara", sPara);
+//			String sHtmlText = AlipaySubmit
+//					.buildRequest(sParaTemp, "get", "确认");
+			return "pc/alipaySubmit";
+		} else {// 校验不通过
+			return this.errorMsg;
+
+		}
+	}
+
+	/**
+	 * 支付宝通知
+	 * 
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping("notify")
+	public void aliPayNotifyCard(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		try {
+			excute(request, response);
+			return;
+		} catch (Exception e) {
+			logger.error("支付结果通知接口异常。", e);
+			try {
+				PrintWriter out = response.getWriter();
+				out.write("fail");
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
+	}
+
+	/**
+	 * 银行卡异步通知
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void excute(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		// 获取支付宝POST过来反馈信息
+		PrintWriter out = response.getWriter();
+		Map<String, String> params = new HashMap<String, String>();
+		Map requestParams = request.getParameterMap();
+
+		for (Iterator iter = requestParams.keySet().iterator(); iter.hasNext();) {
+			String name = (String) iter.next();
+			String[] values = (String[]) requestParams.get(name);
+			String valueStr = "";
+			for (int i = 0; i < values.length; i++) {
+				valueStr = (i == values.length - 1) ? valueStr + values[i]
+						: valueStr + values[i] + ",";
+			}
+			// 乱码解决,这段代码在出现乱码时使用。如果mysign和sign不相等也可以使用这段代码转化
+			// valueStr = new String(valueStr.getBytes("ISO-8859-1"), "gbk");
+			params.put(name, valueStr);
+		}
+		final String out_trade_no = new String(request.getParameter(
+				"out_trade_no").getBytes("ISO-8859-1"), "UTF-8");
+		// 支付宝交易号
+		final String trade_no = new String(request.getParameter("trade_no")
+				.getBytes("ISO-8859-1"), "UTF-8");
+		// 交易状态
+		String trade_status = new String(request.getParameter("trade_status")
+				.getBytes("ISO-8859-1"), "UTF-8");
+		// 获取支付宝的通知返回参数,可参考技术文档中页面跳转同步通知参数列表(以上仅供参考)//
+		String result = "fail";
+		if (AlipayNotify.verify(params)) {// 验证成功
+			if (trade_status.equals("TRADE_FINISHED")
+					|| trade_status.equals("TRADE_SUCCESS")) {
+				result = aliPayNotify(out_trade_no, trade_no);
+				logger.info("result====" + result);
+				//System.out.println("result====" + result);
+			}
+			out.write(result); // 请不要修改或删除
+		} else {// 验证失败
+			out.write("fail");
+		}
+	}
+
+	/**
+	 * 阿里异步通知处理方法
+	 * 
+	 * @param orderNum
+	 *            订单号
+	 * @param tradeNum
+	 *            支付宝交易号
+	 * @return "success" 成功 , "fail" 失败
+	 */
+	public String aliPayNotify(final String orderNum, final String tradeNum) {
+		// 获取校园卡支付记录
+		SitePaymentRecord payRecord = sitePaymentRecordsService
+				.getRecordByOrderNum(orderNum);
+		if (payRecord == null) {// 无支付记录
+			logger.error("校园卡支付记录获取失败--orderNum:" + orderNum + ";支付宝交易号："
+					+ tradeNum);
+			return "fail";
+		}
+		// 校园卡支付记录表状态校验
+		if (payRecord.getIsFinish() == 1) {// 支付状态为支付成功
+			return "success";
+
+		}
+		// 拿到paramMap,校验与系统中的用户状态是不是不一样。
+		final Map<String, String> map = JSON.parseObject(
+				payRecord.getParamJson(), Map.class);
+		String checkResult = schoolPaymentService.paramsCheck(map);
+		if (!"ok".equals(checkResult)) {
+			logger.error("支付订单保留参数与系统现有数据不一致--orderNum:" + orderNum
+					+ ";支付宝交易号：" + tradeNum);
+			sitePaymentRecordsService.updateFailReason("支付订单保留参数与系统现有数据不一致",
+					orderNum);
+			return "fail";
+		}
+
+		try {
+			// 事务
+			Trans.exec(new Atom() {
+				@Override
+				public void run() {
+				/*	int  i=sitePaymentRecordsService.giveLottery(map);
+					if(i<1){
+						logger.error("赠送用户彩票出错--orderNum:" + orderNum);
+						throw Lang.makeThrow("赠送用户彩票出错--orderNum:"+ orderNum);
+					}*/
+					// 修改支付用户的到期 时间
+					int i = sitePaymentRecordsService.changeUserExpireMeal(map);
+					if (i != 1) {
+						logger.error("修改支付用户的到期 时间失败--orderNum:" + orderNum+ ";支付宝交易号：" + tradeNum);
+						sitePaymentRecordsService.updateFailReason("修改支付用户的到期 时间失败", orderNum);
+						throw Lang.makeThrow("修改支付用户的到期 时间失败--orderNum:"
+								+ orderNum + ";支付宝交易号：" + tradeNum);
+					}
+					// 校园卡账务信息表添加记录
+					String userName = userService.getPortalUserById(
+							Integer.parseInt(map.get("userId"))).getUserName();
+					i=sitePaymentRecordsService.saveSchooleFinanceRecord(
+							new BigDecimal(map.get("amount")),
+							Integer.parseInt(map.get("storeId")),
+		    				Integer.parseInt(map.get("userId")),
+		    				userName,
+		    				Integer.parseInt(map.get("buyNum")),map.get("priceName"),1);
+					if (i != 1) {
+						logger.error("校园卡账务信息表添加记录失败--orderNum:" + orderNum
+								+ ";支付宝交易号：" + tradeNum);
+						sitePaymentRecordsService.updateFailReason(
+								"校园卡账务信息表添加记录失败", orderNum);
+						throw Lang.makeThrow("校园卡账务信息表添加记录失败--orderNum:"
+								+ orderNum + ";支付宝交易号：" + tradeNum);
+					}
+
+					// 校园卡支付记录表状态修改为支付成功
+					i = sitePaymentRecordsService.updateToFinish(tradeNum,
+							orderNum);
+					if (i != 1) {// 执行不成功
+						logger.error("校园卡支付记录表状态修改失败--orderNum:" + orderNum
+								+ ";支付宝交易号：" + tradeNum);
+						sitePaymentRecordsService.updateFailReason(
+								"校园卡支付记录表状态修改失败：", orderNum);
+						throw Lang.makeThrow("校园卡支付记录表状态修改失败--orderNum:"
+								+ orderNum + ";支付宝交易号：" + tradeNum);
+					}
+					boolean y=sitePaymentRecordsService.updateCollect(new BigDecimal(map.get("amount")), Integer.parseInt(map.get("storeId")), Integer.parseInt(map.get("tenantId")));
+					if(!y)
+						throw Lang.makeThrow("计费表用户统计或场所统计插入或更新未成功"+ orderNum);
+				}
+			});
+		} catch (Exception e) {
+			logger.error("支付过程事务故障", e);
+			return "fail";
+		}
+		return "success";
+	}
+
+}

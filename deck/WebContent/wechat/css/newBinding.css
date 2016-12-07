@@ -1,0 +1,55 @@
+form{
+	width: 90%;
+	padding-top: 20px;
+}
+.hint{
+	margin-bottom: 20px;
+	background: url(../img/new.png) no-repeat left;
+	background-size: 12px;
+	text-indent: 18px;
+	font-size: 14px;
+}
+.phone{
+	width: 95%;
+	height: 34px;
+	border-radius: 6px;
+	background: none;
+	border: 1px solid #ccc;
+	padding-left: 5%;
+}
+.pass{
+	width: 95%;
+	height: 34px;
+	border-radius: 6px;
+	background: none;
+	border: 1px solid #ccc;
+	padding-left: 5%;
+	margin-top: 20px;
+}
+.code{
+	margin: 20px 0;
+}
+.codeNum{
+	width: 52%;
+	height: 34px;
+	border-radius: 6px;
+	border: 1px solid #ccc;
+	padding-left: 5px;
+}
+.codeBtn{
+	width: 38%;
+	height: 34px;
+	background: #1a9bd2;
+	color: #fff;
+	border: none;
+	border-radius: 6px;
+	float: right;
+}
+.subBtn{
+	width: 100%;
+	height: 34px;
+	background: #1a9bd2;
+	color: #fff;
+	border: none;
+	border-radius: 6px;
+}

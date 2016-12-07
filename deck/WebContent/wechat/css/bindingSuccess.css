@@ -1,0 +1,20 @@
+.success{
+	height: 130px;
+	background: url(../img/success.png) no-repeat center 100px;
+	background-size: 100px;
+	padding-top: 210px;
+	text-align: center;
+}
+.success > button{
+	width: 60%;
+	height: 34px;
+	border: none;
+	color: #fff;
+	background: #1a9bd2;
+	margin: 20px 0;
+	border-radius: 6px;
+}
+.success > a{
+	color: #333;
+	font-size: 14px;
+}

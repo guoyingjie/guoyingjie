@@ -1,0 +1,54 @@
+/* 号码块样式 */
+.loy_num{
+	width: 30px;
+	height: 30px;
+	margin: 6px;
+	display: inline-block;
+	font-size: 1.1em;
+	text-align: center;
+	line-height: 30px;
+	font-weight: bold;
+	border-radius: 8px;
+}
+.blue.loy_num{
+	color: #71c4fe;
+	background: #cbe9ff;
+	background: -moz-linear-gradient(top, #ebf9ff, #c5e6ff);
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#ebf9ff), to(#c5e6ff));
+	background: -o-linear-gradient(top, #ebf9ff, #c5e6ff);
+}
+.blue.loy_num.on{
+	border: 1px solid #4bc0ef;
+	background: #5db5ee;
+	background: -moz-linear-gradient(top, #b7ebfc, #4bc0ef);
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#b7ebfc), to(#4bc0ef));
+	background: -o-linear-gradient(top, #b7ebfc, #4bc0ef);
+	color: #fff;
+	line-height: 28px;
+}
+.red.loy_num{
+	color: #f76f73;
+	background: #ffcdca;
+	background: -moz-linear-gradient(top, #ffe8e8, #ffc8c3);
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#ffe8e8), to(#ffc8c3));
+	background: -o-linear-gradient(top, #ffe8e8, #ffc8c3);
+}
+.red.loy_num.on{
+	border: 1px solid #ee635e;
+	background: #f67679;
+	background: -moz-linear-gradient(top, #f2a39c, #f77074);
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#f2a39c), to(#f77074));
+	background: -o-linear-gradient(top, #f2a39c, #f77074);
+	color: #fff;
+	line-height: 28px;
+}
+/* 号码块样式 */
+
+
+@media screen and (min-width: 640px){
+	body{
+		width: 640px;
+		height: 900px;
+		margin: 0 auto;
+	}
+}

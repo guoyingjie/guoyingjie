@@ -1,0 +1,74 @@
+.user {
+    padding: 24px 0;
+
+}
+
+.icon-title {
+    font-size: 15px;
+    line-height: 26px;
+}
+
+.icon-title img {
+    width: 26px;
+    display: inline;
+    margin-top: -2px;
+    margin-right: 4px;
+}
+
+.surplusBox {
+    margin-top: 7px;
+    position: relative;
+    height: 34px;
+    /*margin-right: 50px;*/
+    /*background-color: #6E6E6E;*/
+    /*left: 50px;*/
+    padding: 0 10px 0 35px;
+}
+
+.count {
+    position: relative;
+    width: 100%;
+    background-color: #f6f6f6;
+    height: 100%;
+
+}
+
+.surplus {
+    width: 80%;
+    background-color: #30a2d3;
+    height: 100%;
+}
+
+.surplusText {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    line-height: 34px;
+    z-index: 999;
+    font-size: 10px;
+}
+
+.icon-bg {
+    background: url(../img/ziimg/flow.png) 0 4px no-repeat;
+    background-size: 26px;
+}
+
+.list {
+    margin-top: 40px;
+    overflow: hidden;
+    height: 43px;
+    line-height: 43px;
+    padding: 0 20px 0 15px;
+    background-color: #e8f5fa;
+}
+
+.list p {
+    float: left;
+}
+
+.right-icon {
+    width: 8px;
+    display: inline-block;
+    float: right;
+    margin-top: 14px;
+}

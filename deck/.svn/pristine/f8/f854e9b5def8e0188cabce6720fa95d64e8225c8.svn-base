@@ -1,0 +1,139 @@
+
+
+
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.Date" %>
+<c:set var="basePath" value="${pageContext.request.contextPath}" />
+<c:set var="mobilePath" value="http://oss.kdfwifi.net/wechat" />
+<c:set var="mobilePath1" value="${basePath}/wechat" />
+ 
+<!DOCTYPE html>
+<html>
+<head>
+<%@ page import="com.broadeast.util.PropertiesParam"%>
+<%
+	String getTimestamp = PropertiesParam.VERSIONS;
+%>
+<meta charset="utf-8">
+	<title>场所信息</title>
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+	<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="${mobilePath}/css/common.css?<%=getTimestamp %>">
+	<link rel="stylesheet" type="text/css" href="${mobilePath}/css/school.css?<%=getTimestamp %>">
+<script type="text/javascript">
+    var basePath= "${basePath}";
+</script>
+
+
+<!-- <script type="text/javascript">
+
+	function initDatabase(){
+		var db= getCurrentDb();//初始化数据库
+		 if(!db) {alert("您的浏览器不支持HTML5本地数据库");return;}
+		 db.transaction(function (trans) {//启动一个事务，并设置回调函数
+             trans.executeSql("create table if not exists Demo(uName text null,title text null,words text null)", [], function (trans, result) {}, function (trans, message) {alert(message);
+             });
+         }, function (trans, result) {
+         }, function (trans, message) {
+		 })
+	}
+    $(function () {//页面加载完成后绑定页面按钮的点击事件
+        initDatabase();
+        $("#btnSave").click(function () {
+            var txtName = $("#txtName").val();
+            var txtTitle = $("#txtTitle").val();
+            var txtWords = $("#txtWords").val();
+            var db = getCurrentDb();
+            //执行sql脚本，插入数据
+            db.transaction(function (trans) {
+                trans.executeSql("insert into Demo(uName,title,words) values(?,?,?) ", [txtName, txtTitle, txtWords], function (ts, data) {
+                }, function (ts, message) {
+                    alert(message);
+                });
+            });
+            showAllTheData();
+        });
+    });
+    function getCurrentDb() {
+        //打开数据库，或者直接连接数据库参数：数据库名称，版本，概述，大小
+        //如果数据库不存在那么创建之
+        var db = openDatabase("myDb", "1.0", "it's to save demo data!", 1024 * 1024); ;
+        return db;
+    }
+    //显示所有数据库中的数据到页面上去
+    function showAllTheData() {
+        $("#tblData").empty();
+        var db = getCurrentDb();
+        db.transaction(function (trans) {
+            trans.executeSql("select * from Demo ", [], function (ts, data) {
+                if (data) {
+                    for (var i = 0; i < data.rows.length; i++) {
+                        appendDataToTable(data.rows.item(i));//获取某行数据的json对象
+                    }
+                }
+            }, function (ts, message) {alert(message);var tst = message;});
+        });
+    }
+    function appendDataToTable(data) {//将数据展示到表格里面
+        //uName,title,words
+        var txtName = data.uName;
+        var txtTitle = data.title;
+        var words = data.words;
+        var strHtml = "";
+        strHtml += "<tr>";
+        strHtml += "<td>"+txtName+"</td>";
+        strHtml += "<td>" + txtTitle + "</td>";
+        strHtml += "<td>" + words + "</td>";
+        strHtml += "</tr>";
+        $("#tblData").append(strHtml);
+    } 
+</script>-->
+</head>
+
+<body>
+<p class="school"></p>
+<p class="siteName"></p>
+<p class="text" style="background-size: 20px;">请选择您当前所在的场所</p>
+<p class="btns"><button type="button" class="sure">确定</button></p>
+<div class="maskSite">
+	<div class="content">
+		<p class="tc"><span>关闭</span></p>
+		<ul class="siteList">
+		<%-- <c:forEach var="p" items="${siteList}">
+			<li value="${p.id }" imgUrl="${p.bannerUrl}">${p.site_name}</li>
+		</c:forEach> --%>
+		</ul>
+	</div>
+</div>
+
+ <!-- <table>
+            <tr>
+                <td>用户名：</td>
+                <td><input type="text" name="txtName" id="txtName" required/></td>
+            </tr>
+               <tr>
+                <td>标题：</td>
+                <td><input type="text" name="txtTitle" id="txtTitle" required/></td>
+            </tr>
+            <tr>
+                <td>留言：</td>
+                <td><input type="text" name="txtWords" id="txtWords" required/></td>
+            </tr>
+        </table>
+        <input type="button" value="保存" id="btnSave"/>
+        <hr/>
+        <input type="button" value="展示所哟数据" onclick="showAllTheData();"/>
+        <table id="tblData">
+        </table> -->
+
+
+<input type="hidden" value="${openid}" id="openid">
+<input type="hidden" value="${accessToken}" id="accessToken">
+<script type="text/javascript" src="http://oss.kdfwifi.net/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="${mobilePath1}/js/allSite.js?<%=getTimestamp %>"></script>
+</body>
+</html>

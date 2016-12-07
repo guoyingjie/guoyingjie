@@ -1,0 +1,77 @@
+.changeName{
+	width: 526px;
+	height: 255px;
+	border: 1px solid #d2d2d2;
+	margin-top: 50px;
+	border-radius: 6px;
+	text-align: center;
+}
+.title{
+	width: 100%;
+	height: 38px;
+	background: #c7f3ff;
+	text-align: center;
+	line-height: 38px;
+	border-radius: 6px;
+	border-bottom: 1px solid #d2d2d2;
+	color: #424242;
+}
+.change{
+	width: 90%;
+	height: 45px;
+	line-height: 45px;
+	position: relative;
+	margin-top: 25px;
+}
+.change > label{
+	width: 18%;
+	height: 45px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: inline-block;
+}
+.change > input{
+	width: 80%;
+	height: 43px;
+	border: 2px solid #d2d2d2;
+	padding-left: 20%;
+}
+.change > input:focus{
+	border: 2px solid #95d7ff;
+	box-shadow: 0 0 20px #ccc;
+}
+.cha{
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	background: #cdcdcd url(../../img/newimg/f.png) no-repeat center;
+	background-size: 10px;
+	display: inline-block;
+	top: 13px;
+	right: 8px;
+	border-radius: 50%;
+	cursor: pointer;
+}
+.msg{
+	position: absolute;
+	color: #ff8025;
+	font-size: 14px;
+	top: 0;
+	right: 50px;
+	line-height: 43px;
+	white-space:nowrap;
+}
+.next{
+	width: 110px;
+	height: 30px;
+	background: #47a4dc;
+	color: #fff;
+	display: inline-block;
+	text-align: center;
+	line-height: 30px;
+	font-size: 14px;
+	margin-top: 25px;
+	cursor: pointer;
+	border-radius: 3px;
+}

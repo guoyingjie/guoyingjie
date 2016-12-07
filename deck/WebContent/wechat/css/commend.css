@@ -1,0 +1,85 @@
+html,
+body {
+    padding: 0;
+    margin: 0;
+    font-size: 62.5%;
+}
+
+.diamond{
+    position: relative;
+    width: 145px;
+    height: 145px;
+    border: 1px solid #1a9bd2;
+    transform:rotate(45deg);
+    -ms-transform:rotate(45deg); /* Internet Explorer */
+    -moz-transform:rotate(45deg); /* Firefox */
+    -webkit-transform:rotate(45deg); /* Safari 和 Chrome */
+    -o-transform:rotate(45deg); /* Opera */
+    margin:70px auto;/*让菱形浏览器上居中*/
+}
+.cue {
+    text-align: right
+}
+
+.cue img {
+    width: 150px;margin-right: 10px
+}
+.imgBox {
+    margin: 0;
+    position: absolute;
+    top: 0;
+}
+
+.img-m {
+    position: absolute;
+    width: 140px;
+    top: 50%;
+    left: 50%;
+    margin-left: -70px;
+    margin-top: -70px;
+}
+
+.blue {
+    color: #1a9bd2;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.f-size-16 {
+    font-size: 16px;
+
+}
+
+.f-size-14 {
+    font-size: 14px;
+}
+
+.stable {
+    color: #999999;
+}
+
+.pdg-50 {
+    padding: 0 13.3%;
+    text-align: left;
+}
+
+.row {
+    margin-top: 40px;
+    overflow: hidden;
+}
+
+.col-25 {
+    float: left;
+    width: 25%;
+    text-align: center;
+}
+
+.col-25 img {
+    width: 40px;
+}
+
+.col-25 p {
+    font-size: 1rem;
+}

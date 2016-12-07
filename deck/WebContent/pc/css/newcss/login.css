@@ -1,0 +1,146 @@
+.login{
+	width: 322px;
+	margin-top: 50px;
+}
+.login > p{
+	position: relative;
+}
+.login > p > input{
+	width: 280px;
+	height: 38px;
+	border: 1px solid #ccc;
+	margin-bottom: 25px;
+	border-radius: 6px;
+	font-size: 16px;
+	padding-left: 40px;
+}
+.login > p > span{
+	position: absolute;
+	color: #ff8025;
+	font-size: 14px;
+	top: 0;
+	left: 330px;
+	line-height: 40px;
+	white-space:nowrap;
+}
+.userName{
+	background: url(../../img/newimg/user.png) no-repeat 10px center;
+	background-size: 16px;
+}
+.userPass{
+	background: url(../../img/newimg/pass.png) no-repeat 10px center;
+	background-size: 16px;
+}
+.login > button{
+	width: 100%;
+	height: 40px;
+	border-radius: 6px;
+	margin-bottom: 25px;
+	background: #47a4dc;
+	color: #fff;
+	border: none;
+	font-size: 16px;
+	cursor: pointer;
+}
+.login > a{
+	font-size: 14px;
+}
+.toForget{
+	color: #727272;
+}
+.toRegister{
+	color: #47a4dc;
+	float: right;
+}
+.log-mask{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	background: rgba(78,78,78,0.6);
+	top: 0px;
+	left: 0px;
+	display: none;
+	z-index: 10;
+}
+.warn{
+	width:360px;
+	height: 160px;
+	position: absolute;
+	left: 50%;
+	top:50%;
+	margin-left: -200px;
+	margin-top: -100px;
+	background: rgba(255,255,255,1);
+	padding:20px;
+	display: none;
+}
+.wanr-text{
+	margin-top: 40px;
+	color: #666;
+	text-align: center;
+}
+.wanr-text>span{
+	color: orange;
+}
+.buttons{
+	width: 260px;
+	height: 40px;
+	margin: 25px auto;
+}
+.buttons>button{
+	padding: 6px 30px;
+	float:left;
+	background: skyblue;
+	margin:5px;
+	color: #fff;
+	border: none;
+	font-size: 12px;
+}
+.buttons1>button{
+	padding: 6px 30px;
+	float:left;
+	background: skyblue;
+	margin:5px;
+	color: #fff;
+	border: none;
+	font-size: 12px;
+}
+.buttons>button:nth-child(2){
+	float:right;
+	background: none;
+	border: 1px solid skyblue;
+	color: skyblue;
+	padding: 6px 28px;
+}
+.log-mask>p{
+	position: fixed;
+	width: 100%;
+	text-align: center;
+	color: rgba(255,255,255,0.7);
+	font-size: 16px;
+	top: 58%;
+}
+.loader
+ {
+  font-size: 90px;
+  text-indent: -9999em;
+  overflow: hidden;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  margin: 30% auto;
+  position: relative;
+  animation: load6 1.7s infinite ease;
+  animation: load6 1.7s infinite ease;
+  display: none;
+}
+.gif{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	background: rgba(119,119,119,.4) url(../../img/newimg/img.gif) no-repeat center ;
+	top: 0;
+	left: 0;
+	display: none;
+	background-size:80px 80px;
+}

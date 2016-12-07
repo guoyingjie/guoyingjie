@@ -1,0 +1,110 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.Date"%>
+<c:set var="basePath" value="${pageContext.request.contextPath}" />
+<c:set var="mobilePath" value="${basePath}/mobile" />
+<c:set var="wechat" value="http://oss.kdfwifi.net/deck/wechat" />
+<c:set var="wechat1" value="${basePath}/wechat" />
+<%@ page import="com.broadeast.util.PropertiesParam"%>
+<%
+	String getTimestamp = PropertiesParam.VERSIONS;
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>剩余时长</title>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<meta name="viewport"
+	content="width=device-width,height=device-height,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<script type="text/javascript"
+	src="http://oss.kdfwifi.net/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="${wechat1}/js/surplus.js?<%=getTimestamp %>"></script>
+<link rel="stylesheet" type="text/css" href="${wechat}/css/common.css?<%=getTimestamp %>">
+<link rel="stylesheet" type="text/css" href="${wechat}/css/person.css?<%=getTimestamp %>">
+<script type="text/javascript">
+	var ctx = "${basePath}";
+</script>
+</head>
+<body>
+	<header>
+		<span class="photo"></span>
+		<div class="userInfo">
+			<p class="name">
+				用户名<span id="userTel"></span>
+			</p>
+			<p class="balance">
+				余额：<span></span>
+			</p>
+			<a class="goPer" id="personGo"><!-- <i class="msmq"></i> --></a>
+		</div>
+	</header>
+	<div class="surplus">
+		<p class="tit">
+			<span></span>套餐余量
+		</p>
+		<div class="time">
+			<p>
+				<span class="jd" id="timecolor"></span>
+				<span class="txt">
+				</span>
+			</p>
+		</div>
+		<div class="gprs">
+			<p>
+				<span class="jd" id="flowcolor"></span>
+				<span class="txt">
+				</span>
+			</p>
+		</div>
+	</div>
+	<ul class="funcBtn">
+		<li id="goToPay"><p></p>充值</li>
+		<li id="toPayrecord"><p></p>缴费记录</li>
+	</ul>
+	<div class="getOff" style="margin:0 20px;height:40px;line-height:40px;border-radius:3px;font-size:16px;letter-spacing:1px;position:absolute;bottom:20px;background:#1a9bd2;text-align:center;color:#fff;width:90%;">WIFI下线</div>
+	<div class="altMask">
+		<div>
+			<span></span>
+			<p class="msg"></p>
+		</div>
+	</div>
+	<input type="hidden" value="${proUser.userName}" id="username">
+	<input type="hidden" value="" id="ratioTime">
+	<input type="hidden" value="" id="ratioFlow">
+	<input type="hidden" value="${mess}" id="mess">
+	<input type="hidden" value="" id="phoneurl">
+	<input type="hidden" value="" id="weixinurl">
+	<input type="hidden" value="${openid}" id="openid">
+	<input type="hidden" value="${proUser.id}" id="userId">
+	<input type="hidden" value="${site.id}" id="siteId">
+
+	<script type="text/javascript">
+		var v="4.1.4";
+		$(function() {
+			var siteId=$("#siteId").val();
+			var openid=$("#openid").val();
+			var username=$("#username").val();
+			$("#goToPay").click(function() {
+				window.location.href = ctx + "/myselfPay/toPay?openid="+openid+"&siteId="+siteId+"&v="+v;
+			});
+			$("#toPayrecord").click(function() {
+				window.location.href = ctx + "/weChatPublicNum/payRecordForWeixin?openid="+openid+"&siteId="+siteId+"&v="+v;
+			});
+
+			var time = $(".time").html();
+			var flow = $('.gprs').html();
+			var timer = $("#ratioTime").val();
+			var flowr = $("#ratioFlow").val();
+			if (timer == '0' && flow != '0') {
+				$(".time").replaceWith($('.gprs'));
+				$('.gprs').after("<div class='time'>" + time + "</div>");
+			}
+			
+		});
+	</script>
+</body>
+</html>

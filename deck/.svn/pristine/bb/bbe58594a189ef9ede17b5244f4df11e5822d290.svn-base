@@ -1,0 +1,78 @@
+.tip-word{
+	margin: 0 auto;
+    text-align: center;
+    background: url(../img/sorry.png) left 0 no-repeat;
+    background-size: 18px;
+    display: inline-block;
+    padding: 0 25px;
+    color: #333;
+    font-size: 16px;
+}
+.ll-style{
+	margin-top: -15px;
+}
+.gift-pic{
+	display: inline-block;
+	position: relative;
+	left: 15px;
+	z-index: -1;
+}
+.gift-pic img{
+	width: 76px;
+}
+.ll-list{
+	margin: 0 20px;
+	margin-top: -35px;
+	background: #fff;
+	border-radius: 5px;
+}
+.ls-show{
+	width: 100%;
+	height: 29px;
+	line-height: 29px;
+	background: #fd4f50;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	color: #fff;
+	text-align: center;
+	font-size: 16px;
+}
+.list-show ul{
+	width: 100%;
+	background: #FF6E6E;
+	padding: 15px 0;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	margin-bottom: 10px;
+}
+.list-show ul li{
+	height: 32px;
+	overflow: hidden;
+	color: #fff;
+	font-size: 14px;
+}
+.ll-tel{
+	line-height: 32px;
+    padding-left: 41px;
+    margin-left: 20px;
+    float: left;
+	font-size: 14px;
+    
+}
+.bac1{
+    background: url(../img/first.png) left center no-repeat;
+    background-size: 26px;
+}
+.bac2{
+    background: url(../img/two.png) left center no-repeat;
+    background-size: 26px;
+}
+.bac3{
+    background: url(../img/three.png) left center no-repeat;
+    background-size: 26px;
+}
+.xu-name{
+	float: right;
+	line-height: 32px;
+	margin-right: 20px;
+}

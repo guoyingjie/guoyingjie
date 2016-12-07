@@ -1,0 +1,30 @@
+form{
+	width: 80%;
+	padding-top: 20px;
+}
+.hint{
+	width: 63%;
+	margin-bottom: 20px;
+	background: url(../img/other.png) no-repeat left;
+	background-size: 24px;
+	text-align: right;
+	font-size: 18px;
+	text-align: center;
+}
+.phone{
+	width: 95%;
+	height: 34px;
+	border-radius: 6px;
+	background: none;
+	border: 1px solid #ccc;
+	padding-left: 5%;
+	margin-bottom: 20px;
+}
+.subBtn{
+	width: 100%;
+	height: 34px;
+	background: #1a9bd2;
+	color: #fff;
+	border: none;
+	border-radius: 6px;
+}

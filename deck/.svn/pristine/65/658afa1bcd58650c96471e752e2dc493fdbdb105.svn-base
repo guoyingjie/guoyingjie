@@ -1,0 +1,40 @@
+.terms{
+	width: 749px;
+	height: 395px;
+	border: 1px solid #d2d2d2;
+	margin-top: 50px;
+	border-radius: 6px;
+	text-align: center;
+	overflow: auto;
+}
+.title{
+	width: 100%;
+	height: 38px;
+	background: #c7f3ff;
+	text-align: center;
+	line-height: 38px;
+	border-radius: 6px;
+	border-bottom: 1px solid #d2d2d2;
+	color: #424242;
+}
+.xtitle{
+	width: 90%;
+	height: 39px;
+	border-bottom: 1px solid #ddd;
+	line-height: 40px;
+	color: #474747;
+}
+.xz{
+	color: #47a4dc;
+	padding-left: 3%;
+	width: 87%;
+	background: url(../../img/newimg/xq.png) no-repeat left;
+	margin-top: 8px;
+	text-align: left;
+}
+.text{
+	width: 80%;
+	color: #737373;
+	margin: 10px auto;
+	text-align: left;
+}

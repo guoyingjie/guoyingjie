@@ -1,0 +1,55 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.Date"%>
+<c:set var="basePath" value="${pageContext.request.contextPath}" />
+<c:set var="mobilePath" value="${basePath}/mobile" />
+<c:set var="wechatPath" value="http://oss.kdfwifi.net/wechat" />
+<c:set var="wechatPath1" value="${basePath}/wechat" />
+<%@ page import="com.broadeast.util.PropertiesParam"%>
+<%
+	String getTimestamp = PropertiesParam.VERSIONS;
+%>
+<!DOCTYPE html>
+<html>
+<script type="text/javascript">
+	var ctx = "${basePath}";
+	var headUrl="${ur}"
+	var content="${content}";
+</script>
+<head>
+<meta charset="utf-8">
+<title>我的推荐码</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link rel="stylesheet" type="text/css" href="${wechatPath}/css/commend.css?<%=getTimestamp %>">
+	<script type="text/javascript" src="http://oss.kdfwifi.net/js/jquery-1.9.1.min.js"></script>
+	
+
+</head>
+<body>
+<input type="hidden" id="timestamp">
+<input type="hidden" id="signature">
+<input type="hidden" id="nonce_str">
+<input type="hidden" id="appId">
+<script type="text/javascript" src="${wechatPath1}/js/jweixin-1.0.0.js"></script>
+<div id="shit" style="display:none;">
+	<div class="cue">
+	    <img src="${wechatPath}/img/cue.png">
+	</div>
+	<div class="diamond">
+	    <div class="diamond imgBox">
+			<div id="imgSrc" class="img-m"></div>
+	    </div>
+	</div>
+	
+	<div class="text-center">
+	    <p class="f-size-16">我的推荐码:<span id="code" class="blue">${recommend}</span></p>
+	    <p class="f-size-14 stable pdg-50">分享您的推荐码，好友成功注册，您和好友 都将获得免费上网时长！</p>
+	</div>
+</div>
+<input type="hidden" id="urls" value="${shareUrl}">
+</body> 
+	<script type="text/javascript" src="${wechatPath1}/js/jquery.qrcode.min.js"></script>
+		<script type="text/javascript" src="${wechatPath1}/js/commend.js"></script>
+</html>

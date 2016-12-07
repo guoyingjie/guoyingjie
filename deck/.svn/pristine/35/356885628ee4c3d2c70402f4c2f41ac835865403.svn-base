@@ -1,0 +1,32 @@
+
+#======================= 商户开通的商户号
+merchant.num=110138932001
+
+#======================= 商户DES密钥
+merchant.desKey=V3pR4zFevzQLzonmFrMZ1scsbTgqioMx
+#=======================商户MD5密钥
+merchant.md5Key=MssobHzbbdvwQvxdc3Ohx2xTger5qxw4
+
+#=======================商户支付请求/交易查询/退款 RSA加密私钥(由商户生成,并将对应的公钥发给网银)
+merchant.pay.rsaPrivateKey=MIICeAIBADANBgkqhkiG9w0BAQEFAASCAmIwggJeAgEAAoGBANJIkKxDgS7xsQWbHpGm/Fo9dRJn4KFy5JuXjjbRZJU5XFYtimXEBY+9rrtLcG0HtwExbIbryhXQP6kxcL/WW6STTgz13RUmhRrULS1DMr4mGKZB09H3Vj5sw9Au92xvfDMFlJpBnZLxwDBnxJQjji0/H2BnAnHU0fIRyJZreWtlAgMBAAECgYEAh/SqtPWgHD3fegRkqz8PgTii7JeEwF2MOJywMfkH0wMXFBC1nj4yalD1G9sWgSevxnGx/TmNmrTdtAJnJ2DsNjpMJqTq4C1klfGPXAuppnq7m9ifDN9u9LKUTdjvOvs5aEgLf8O04GHj9MxwgvhrfeukbY50zD7CdqqccW9s07ECQQD+YstWsq3z9M5YboqRmG9nRwe9LiMXhtPro8uFBycG7swbPFmV7IwpFxID2Tqh73U0+kuhJqDa+CJUnfl2eMQjAkEA054iUbOXjcoDafMwV4XAttTE/Y+V5RRjOIu6PxcVbBo/7OhimxXA7L1g5S4gWJHZFL1sC9sfkcWTPiBdtoqm1wJAHTVwzZqkmJ9iVgsTRBZxrDUesV0r0Fa93I+pHbQtigE/VF1AmBNaIJmyitiVf+SD27pllrJdw+a74mVlMHI7awJBAKEmE/Zpr+iexLjDI7YSue3A235IAJrhSqm95gezWXHoD3QmhyiYiUD++jGsTZ+E+W3MzeG9bS4B6h3uYc7niSMCQQDDFZyHrkTdMnzh3jwYTPjnhARXZKgkILpRA1jRuC2Kxhh+yrK7eJZ7JyKz6EaBCKWLWVdO4qFNosSo1G7VszoJ
+
+#=======================商户交易查询/退款 RSA验签公钥 (由网银生成,并将公钥提供给商户)
+merchant.common.rsaPublicKey=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDSSJCsQ4Eu8bEFmx6RpvxaPXUS Z+ChcuSbl4420WSVOVxWLYplxAWPva67S3BtB7cBMWyG68oV0D+pMXC/1lukk04M 9d0VJoUa1C0tQzK+JhimQdPR91Y+bMPQLvdsb3wzBZSaQZ2S8cAwZ8SUI44tPx9g ZwJx1NHyEciWa3lrZQIDAQAB
+
+#=======================网银支付服务地址
+wangyin.wepay.server.pay.url=https://m.jdpay.com/wepay/web/pay
+
+#=======================网银查询服务地址
+wangyin.wepay.server.query.url=https://m.jdpay.com/wepay/query
+
+#=======================网银退款服务地址
+wangyin.wepay.server.refund.url=https://m.jdpay.com/wepay/refund
+
+#=======================支付成功 商户展示地址
+successCallbackUrl=deck/w/resultPage
+#successCallbackUrl=http://192.168.10.5/deck/mobile/successresult.jsp
+#=======================支付失败 商户展示地址
+failCallbackUrl=deck/mobile/failresult.jsp
+
+#=======================接收异步通知地址
+notifyUrl=deck/quickPayment/payNotify

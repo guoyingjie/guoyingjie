@@ -1,0 +1,86 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.Date"%>
+<c:set var="basePath" value="${pageContext.request.contextPath}" />
+<c:set var="css" value="http://deck.oss-cn-hangzhou.aliyuncs.com/wechat/css"/>
+<c:set var="img" value="http://deck.oss-cn-hangzhou.aliyuncs.com/wechat/img/ziimg"/>
+<c:set var="js" value="${basePath}/wechat/js" />
+<!DOCTYPE html>
+<html>
+<head>
+<%@ page import="com.broadeast.util.PropertiesParam"%>
+<%
+	String getTimestamp = PropertiesParam.VERSIONS;
+%>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>划拨资费</title>
+    <link rel="stylesheet" type="text/css" href="${css}/newpublic.css?<%=getTimestamp %>"/>
+    <link rel="stylesheet" type="text/css" href="${css}/transfer.css?<%=getTimestamp %>">
+    <script type="text/javascript">
+    
+    var ctx = "${basePath}"
+    var routerType= '<%=(String)session.getAttribute("type")%>';
+    </script>
+</head>
+<body>
+<div class="content">
+
+    <h4 class="typeTitle">充值类型</h4>
+    <div class="text-center">
+            <div class="radio-row">
+                <input id="flow" class="payType radio" checked name="type" type="radio"/>
+                <!--<div class="radio"></div>  -->
+                <label for="flow" class="radio">充值流量</label>
+            </div>
+            <div class="radio-row">
+                <input  class="payType radio" name="type" type="radio" id="time"/>
+                <!--<div class="radio"></div>  -->
+                <label for="time" class="radio">充值时长</label>
+            </div>
+        </div>
+    <div class="border" style="margin-top: 15px"></div>
+    <div class="list" style="margin-top: 18px">
+        <p class="left-title">购买单位</p>
+
+        <div class="costType">
+            <span class="seleType"><span class="seleTxt">G</span> <i class="down"><i class="icon-bg"></i></i></span>
+            <ul>
+                <li>G</li>
+                <li>M</li>
+            </ul>
+        </div>
+    </div>
+    <div class="border" style="margin-top: 60px"></div>
+    <div class="list" style="margin-top: 18px">
+        <p class="left-title">购买数量</p>
+
+        <div id="tel-row" class="right-number">
+            <a>-</a>
+            <input id="number" onkeyup="this.value=this.value.replace(/\D/g,'')" type="tel" >
+            <a>+</a>
+        </div>
+    </div>
+    <div class="border" style="margin-top: 60px"></div>
+    <p class="tranTip"> 子账号充值所用资费全部来自主账号，若主账号余量不足，请 先对主账号进行充值。</p>
+    <p class="tranTip">主账号剩余时长必须多于三天或者剩余流量必须大于200兆才能划分到子账号。</p>
+    <p class="tranTip">主账号下线后才能激活子账号。</p>
+</div>
+
+<div style="height: 100px"></div>
+
+<div class="footer-btn">
+    <button id="rechargeBtn" class="btn-block blue-bg">立即划拨</button>
+</div>
+<div id="errModel" style="display: none"><p id="errMsg"></p></div>
+<div class="footer">KDFWIFI.COM 2013-2016</div>
+<input type="hidden" value="${sonname}" id="sonname" />
+<input type="hidden" value="${siteId}" id="siteId" />
+<input type="hidden" value="${username}" id="username" />
+<input type="hidden" value="${openid}" id="openid" />
+</body> 
+	<script src="http://oss.kdfwifi.net/js/jquery-1.9.1.min.js"></script>
+	<script src="${js}/transfer.js?<%=getTimestamp %>"></script>
+</html>

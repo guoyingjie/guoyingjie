@@ -1,0 +1,535 @@
+/*通用样式*/
+body{
+	min-height: 480px;
+}
+.wrap {
+	width: 100%;
+	margin: 0 auto;
+	position: relative;
+	min-height: 100%
+}
+
+
+/*------------top-nav------------*/
+
+.top-nav {
+	height: 180px;
+	position: relative;
+	overflow: hidden
+}
+
+.top-nav ul {
+	height: 100%
+}
+
+.top-nav li {
+	float: left;
+	width: 100%;
+	height: 100%;
+	position: relative
+}
+
+.top-nav img {
+	width: 100%;
+	height: 100%
+}
+
+.top-nav h3 {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	height: 30px;
+	line-height: 30px;
+	padding: 0 15px;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 100%;
+	color: #fff;
+	font-size: 14px;
+	font-weight: bold
+}
+
+.num {
+	position: absolute;
+	right: 50%;
+	margin-right: -22px;
+	bottom: 13px;
+	height: 5px
+}
+
+.num span {
+	float: left;
+	width: 7px;
+	height: 7px;
+	margin: 0 2px;
+	border-radius: 50%;
+	border: 1px solid #fff;
+}
+
+.num span.swiper-active-switch {
+	background-color: #fff
+}
+
+
+/*main-cont主体内容*/
+
+.mian-cont {
+	margin: 20px 20px;
+	background: #fff;
+}
+
+.welcome-word{
+	text-align: center;
+	color: #47a4dc;
+	font-size: 16px;
+	margin-bottom: 10px;
+}
+
+.userMsg{
+	height: 180px;
+	margin: 10px auto;
+	text-align: center;
+}
+
+.user_info{
+	height: 38px;
+	line-height: 38px;
+}
+.get-method{
+	height: 20px;
+	line-height: 20px;
+	font-size: .9em;
+	color: #666464;
+}	
+.advice-word{
+	font-size: .75em;
+	color: #999;
+}
+
+.tel-info{
+	font-size: 19px;
+	font-weight: bold;
+	color: #666464;
+	letter-spacing: 1px;
+}
+
+.login-btn{
+	padding-top: 5px;
+}
+
+.login-btn span,.login-btn button{
+	width: 41%;
+	
+	display: block;
+	text-align: center;
+	height: 38px !important;
+	line-height: 38px !important;
+	float: left;
+	border-radius: 3px;
+	cursor: pointer;
+}
+.left_btn{
+	border: 1px solid #999;
+	color: #999;
+}
+
+.right_btn{
+	float: right !important;
+	color: #fff;
+	background: #47a4dc;
+	border-radius:3px;
+	border: none;
+	font-size: 1em;
+}
+
+#findpassword{
+	background: none;
+	border: none;
+	color: #47a4dc;
+}
+
+.advice-word{
+	margin-top: 20px;
+}
+/*--------------尾部----------------*/
+.footer{
+	position: fixed;
+	bottom: 2px;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	margin: 0 auto;
+	padding: 0 20px;
+	z-index: -1;
+}
+
+.notice{
+	font-size: 12px;
+	color: #47a4dc;
+	display: -webkit-inline-box;
+	background: #fff;
+	padding: 0 10px;
+	font-style: normal;
+	margin-top: 30px;
+	position: relative;
+	z-index: 20;
+}
+
+.notice img{
+	width: 18px;
+	display:inline-block;
+}
+
+.dividing-line{
+	border-top: 1px solid #ccc;
+	width: 100%;
+	margin-top: -10px;
+}
+
+.copyright{
+	position: absolute;
+	bottom: 10px;
+	color: #666;
+	font-size: .8em;
+	width: 270px;
+    left: 50%;
+    margin-left: -135px;
+    z-index: -5;
+}
+/*------------------------修改账户------------------------------------*/
+.tel-input{
+	width: 100%;
+	border: 1px solid #C9C9C9;
+	border-radius: 3px;
+	text-align: left;
+	font-size: 14px;
+	padding-left: 10px;
+}
+.has-regist,.no-regist{
+	width: 18px;
+	display: inline-block;
+	position: absolute;
+	right: 25px;
+	margin-top: 7px;
+}
+.tel-input input,.pass-input input,.newtel-input input,.get-Verification input{ 
+	width: 80%;
+	height: 30px;
+	line-height: 30px;
+	margin: 4px auto;
+	font-size: 14px;
+    letter-spacing: 1px;
+}
+.no-login,.has-login,.get-linepass,.has-logins{
+	width: 100%;
+	height: 38px;
+	background: #47a4dc;
+	border-radius: 3px;
+	color: #fff;
+	padding: 5px 0px;
+	font-size: 16px;
+	text-align: center; 
+	margin-top: 10px;
+	border: none;
+}
+.errorP{
+	position: absolute;
+	display: inline-block;
+	margin: 0 auto;
+	width: 130px;
+	height: 130px;
+	z-index: 1001;
+	left: 50%;
+	top: 50%;
+	margin-top: -65px;
+	margin-left: -65px;
+	background: url(../../img/newimg/errorP.png) no-repeat center;
+	background-size: cover;
+	text-align: center;
+	padding-top: 85px;
+	display: none;
+	/*margin-top: 30px;*/
+}
+.msg{
+	color: #fff;
+	font-size: 1em;
+}
+.serve-term{
+	margin-top: 10px;
+	text-align: left;
+	font-size: 12px;
+	color: #6E6E6E;
+}
+.serve-term i{
+	color: #58ADFE;
+}
+.serve-term img{
+	display: inline-block;
+	width: 16px;
+	vertical-align: middle;
+	margin-bottom: 3px;
+	margin-right: 5px;
+}
+/*已注册用户*/
+.pass-input{
+	width: 100%;
+	border: 1px solid #C9C9C9;
+	border-top: none;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+	text-align: left;
+	font-size: 14px;
+	padding-left: 10px;
+}
+.pass-view{
+	position: absolute;
+	right: 25px;
+	display: inline-block;
+	margin-top: 10px;
+}
+.pass-view img{
+	width: 17px;
+}
+.new-pass{
+	width: 100%;
+	border: 1px solid #C9C9C9;
+	border-radius: 3px;
+	text-align: left;
+	font-size: 14px;
+	padding-left: 10px;
+	margin-bottom: 22px;
+}
+.new-pass input{
+	height: 30px;
+	line-height: 30px;
+	font-size: 14px;
+}
+.find_pass{
+	text-align: right;
+	color: #47a4dc;
+	font-size: 12px;
+	margin-bottom: 15px;
+	cursor: pointer;
+	margin-top: 10px;
+	
+}
+ 
+/*未注册用户*/
+.newtel-input{
+	width: 100%;
+	border: 1px solid #C9C9C9;
+	border-radius: 3px;
+	text-align: left;
+	font-size: 14px;
+	padding-left: 10px;
+}
+/*---------找回密码-----------*/
+.newget-Verification{
+	height: 38px;
+	line-height: 38px;
+	width: 100%;
+	border: 1px solid #C9C9C9;
+	border-top: none;
+	border-radius: 3px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	text-align: left;
+	font-size: 14px;
+	padding-left: 10px;
+	margin-bottom: 10px;
+}
+.get-Verification{
+	height: 38px;
+	line-height: 38px;
+	width: 100%;
+	border: 1px solid #C9C9C9;
+	border-radius: 3px;
+	text-align: left;
+	font-size: 14px;
+	padding-left: 10px;
+	margin-bottom: 10px;
+}
+.get-code{
+	position: absolute;
+	right: 24px;
+	height: 30px;
+	line-height: 30px;
+	display: inline-block;
+	margin: 3px auto;
+	padding: 0 5px;
+	border-radius: 3px;
+	border: 1px solid #47a4dc;
+	color: #fff;
+	background: #47a4dc;
+}
+.newget-Verification input{
+	height: 30px;
+	line-height: 30px;
+	font-size: 14px;
+}
+/*头部标题变换*/
+/*.scale{
+		animation: scale .3s forwards;
+}*/
+@keyframes scale{
+	form{transform: scale(0.01,0.01);}
+	to{transform: scale(1,1);}
+}
+@-webkit-keyframes scale{
+	form{transform: scale(0.01,0.01);}
+	to{transform: scale(1,1);}
+}
+@-moz-keyframes scale{
+	form{transform: scale(0.01,0.01);}
+	to{transform: scale(1,1);}
+}
+@-ms-keyframes scale{
+	form{transform: scale(0.01,0.01);}
+	to{transform: scale(1,1);}
+}
+@-o-keyframes scale{
+	form{transform: scale(0.01,0.01);}
+	to{transform: scale(1,1);}
+}
+/*-------------------------------------480-------------------------------------*/
+
+@media screen and (min-width: 480px) {
+	body {
+		min-width: 480px;
+		font-size: 18px;
+		line-height: 27px
+	}
+	/*------------top-nav------------*/
+	.top-nav h3 {
+		height: 45px;
+		line-height: 45px;
+		padding: 0 22.5px;
+		font-size: 21px
+	}
+	.num {
+		position: absolute;
+		right: 50%;
+		margin-right: -22px;
+		bottom: 13px;
+		height: 5px
+	}
+	.num span {
+		width: 7.5px;
+		height: 7.5px;
+		margin: 0 3px;
+		border: 1px solid #fff;
+	}
+}
+
+/*-------------------------------------6P以上-------------------------------------------*/
+ @media screen and (min-width: 400px) {
+	.get-method {
+	    font-size: 1rem;
+		}
+	.tel-info {
+		    font-size: 2rem;
+		}
+	.login-btn {
+		margin-top: 20px;
+	}
+	.advice-word {
+	    font-size: .9rem;
+	}
+	.welcome-word {
+	    font-size: 1.2rem;
+	} 
+}
+/*-------------------------------------640px-------------------------------------------*/
+
+@media screen and (min-width: 640px) {
+	.wrap {
+		width: 640px;
+		font-size: 24px;
+		line-height: 36px
+	}
+	/*------------top-nav------------*/
+	.top-nav h3 {
+		height: 60px;
+		line-height: 60px;
+		padding: 0 30px;
+		font-size: 28px
+	}
+	.num {
+		position: absolute;
+		right: 50%;
+		margin-right: -18px;
+		bottom: 27px;
+		height: 5px
+	}
+	.num span {
+		width: 10px;
+		height: 10px;
+		margin: 0 4px;
+		border: 1px solid #fff;
+	}
+}
+/*==================多台登录时提醒提示框====================*/
+.log-mask{
+	width: 100%;
+	height:100%;
+	position: fixed;
+	background: rgba(78,78,78,0.5);
+	top: 0;
+	left: 0;
+	display: none;
+}
+.log-mask>p{
+	position: fixed;
+	width: 100%;
+	text-align: center;
+	color: rgba(255,255,255,0.7);
+	font-size: 16px;
+	top: 55%;
+}
+.warn{
+	width:80%;
+	height: 150px;
+	position: absolute;
+	left: 10%;
+	top:50%;
+	margin-top: -75px;
+	background: rgb(255,255,255);
+	display: none;
+}
+.wanr-text{
+	margin-top: 40px;
+	color: #7a7a7a;
+	text-align: center;
+	padding: 0 10px;
+	font-size: 12px;
+}
+.wanr-text>span{
+	color: orange;
+}
+.buttons{
+	width: 100%;
+	height: 40px;
+	position: absolute;
+	bottom: 0;
+}
+.buttons>button{
+	width:50%;
+	height: 40px;
+	float:left;
+	background: #efefef;
+	color: #666;
+	border: none;
+	font-family: Microsoft Yahei;
+	font-size: 14px;
+}
+.buttons>button:nth-child(2){
+	float:right;
+	background: none;
+	border: 1px solid #efefef;
+	color: skyblue;
+}
+/*==================end====================*/
+
+
+
+

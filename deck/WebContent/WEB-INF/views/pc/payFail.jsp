@@ -1,0 +1,34 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.Date"%>
+<c:set var="basePath" value="${pageContext.request.contextPath}" />
+<c:set var="mobilePath" value="http://oss.kdfwifi.net/deck/mobile" />
+<%@ page import="com.broadeast.util.PropertiesParam"%>
+<%
+	String getTimestamp = PropertiesParam.VERSIONS;
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>缴费失败</title>
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<link rel="stylesheet" type="text/css" href="${mobilePath}/css/newcss/common.css">
+<link rel="stylesheet" type="text/css" href="${mobilePath}/css/newcss/payFail.css">
+</head>
+<body>
+<header>
+	<a class="goBack" href="javascript: history.back(-1);"></a>
+	缴费失败
+</header>
+<span class="round"></span>
+<h3>缴费失败</h3>
+<!-- <p class="dj"><span id="dj">5</span>秒后自动跳转</p>
+<p class="link"><a href="javascript: history.back(-1);">立即跳转</a></p> -->
+<footer>
+	<p>本Wi-Fi由以下机构联合提供<br>【${site.site_name}/北京宽东方】</p>
+	<p class="copyRight">KDFWIFI.COM 2013-2016</p>
+</footer>
+</body>
+</html>

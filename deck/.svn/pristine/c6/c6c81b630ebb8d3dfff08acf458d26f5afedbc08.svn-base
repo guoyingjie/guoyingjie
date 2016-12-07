@@ -1,0 +1,21 @@
+.rr-intro{
+	margin: 20px 20px;
+}
+.ri-detial{
+	font-size: 13px;
+	color: #484848;
+	margin: 5px auto;
+	border-bottom: 1px solid #F3F3F3;
+	padding-bottom: 10px;
+}
+.rr-intro p{
+	font-size: 15px;
+	color: #1A9BD2;
+	margin-left: -5px;
+	margin-bottom: 5px;
+}
+.ri-end{
+	text-align: center;
+	color: #4DAFDB;
+	font-size: 12px;
+}

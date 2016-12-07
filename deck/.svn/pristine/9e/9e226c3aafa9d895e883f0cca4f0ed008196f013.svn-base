@@ -1,0 +1,20 @@
+body {
+    background-color: #f5f8fa;
+}
+
+.user {
+    padding: 24px 0;
+}
+
+.found-label {
+    display: block;
+    float:left;
+    line-height: 42px;
+}
+
+.myinput-div {
+    position: absolute;
+    left: 86px;
+    right: 0;
+    z-index: 1
+}

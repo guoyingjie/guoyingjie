@@ -1,0 +1,389 @@
+body{
+	background:#f0f0f0;
+}
+button{
+	font-family: Microsoft Yahei;
+}
+.box{
+	width:100%; height:auto; position:relative;
+}
+.header{
+	width:100%; height:9.2%; background:#fff; top:0; position:absolute; text-align:center; border-bottom:1px #999999 solid;
+	z-index: 5;
+}
+.header p{
+	width:100%; height:18px; text-align:center; margin-top:3.5%; font-family:"微软雅黑"; position:relative;
+}
+.header span{
+	display:block; float:left;
+}
+.header .pic{
+	margin-left:5.3%;
+}
+.header .dl{
+	font-size:18px; text-align:center; width:68.8%;
+}
+.header .zc{
+	font-size:13px; color:#666; margin-top:1.8%;
+}
+.banner{
+	width:86%;
+	height:75px;
+	position:absolute;
+	top:8.3%;
+	background: #fff url(../img/dlbj.png) repeat;
+	margin: 0 auto;
+	left: 5%;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	padding: 0px 2%;
+	display: none;
+}
+.schoolName{
+	color: #4c4c4c;
+	font-size: 16px;
+	text-align: center;
+	margin-top: 20px;
+}
+.banner > span{
+	color: #1aabcf;
+	font-size: 15px;
+	width: 100%;
+	text-align: center;
+	display: inline-block;
+	margin-top: 8px;
+}
+
+/* 实名认证 start */
+#autonym{
+	width: 100%;
+	height: 320px;
+	position: absolute;
+	top: 18%;
+}
+.uForm{
+	position: relative;
+	display: block;
+}
+.uForm > input{
+	width: 85%;
+	height: 50px;
+	border: none;
+	border-top: 1px solid #d6d6d6;
+	padding-left: 15%;
+	font-size: 1.2em;
+}
+.uForm > input:nth-child(5){
+	border-bottom: 1px solid #d6d6d6;
+}
+#userName{
+	background: #fff url(../img/name.png) no-repeat 15px;
+	background-size: 18px;
+}
+#userCard{
+	background: #fff url(../img/card.png) no-repeat 15px;
+	background-size: 18px;
+}
+#userPosi{
+	background: #fff url(../img/posi.png) no-repeat 15px;
+	background-size: 18px;
+}
+.next,
+.next1,
+.over{
+	margin-top: 20px;
+	width: 84%;
+	height: 40px;
+	color: #fff;
+	background: #e8a005;
+	font-size: 14px;
+	border: none;
+	margin-left: 8%;
+}
+.next1,
+.over{
+	top: 92%;
+	position: absolute;
+	display: none;
+}
+.uForm > em{
+	width: 84%;
+	margin-left: 8%;
+	display: inline-block;
+	text-align: center;
+	font-size: 12px;
+	margin-top: 10px;
+	color: #b2b2b2;
+	font-style: normal;
+}
+.nameerro,
+.carderro,
+.posierro{
+	position: absolute;
+	background: #fafafa;
+	border: 1px solid #e5e5e5;
+	display: none;
+	right: 20px;
+	color: #e86505;
+	font-size: 12px;
+}
+.nameerro{
+	top: 0px;
+}
+.carderro{
+	top: 51px;
+}
+.posierro{
+	top: 102px;
+}
+.idCardPic{
+	display: none;
+}
+.userPicImg{
+	display: none;
+}
+#cardPic,
+#userPic{
+	position: absolute;
+	top: 80px;
+	left: 15%;
+	filter:alpha(opacity:0);
+	opacity:0;
+}
+.cardPic{
+	width: 80%;
+	height: 240px;
+	display: block;
+	background: url(../img/cardpic.png) no-repeat center;
+	background-size: 80%;
+	position: absolute;
+	top: 50px;
+	left: 10%;
+	z-index: 4;
+}
+.user-Pic{
+	width: 80%;
+	height: 240px;
+	display: block;
+	background: url(../img/userPoto.png) no-repeat center;
+	background-size: 80%;
+	position: absolute;
+	top: 50px;
+	left: 10%;
+	z-index: 4;
+}
+.load{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -62px;
+	margin-left: -62px;
+	z-index: 7;
+	display: none;
+}
+.img-list{
+	width: 80%;
+	height: 240px;
+	position: absolute;
+	top: 50px;
+	left: 10%;
+	z-index: 3;
+}
+.img-list li{
+	position: relative;
+	display: inline-block;
+	width: 90%;
+	height: 90%;
+	margin: 5px 5px 20px 5px;
+	border: 1px solid rgb(100,149,198);
+	background: #fff no-repeat center;
+	background-size: contain;
+}
+.progress{
+	position: absolute;
+	width: 100%;
+	height: 20px;
+	line-height: 20px;
+	bottom: 0;
+	left: 0;
+	background-color:rgba(100,149,198,.5);
+}
+.progress span{
+	display: block;
+	width: 0;
+	height: 100%;
+	background-color:rgb(100,149,198);
+	text-align: center;
+	color: #FFF;
+	font-size: 13px;
+	float: left;
+}
+.upz{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	color: #fff;
+}
+.tips{
+	display: block;
+	text-align:center;
+	font-size: 13px;
+	margin: 10px;
+	color: #999;
+}
+.pic-list{
+	margin: 10px;
+	line-height: 18px;
+	font-size: 13px;
+}
+.pic-list a{
+	display: block;
+	margin: 10px 0;
+}
+.pic-list a img{
+    vertical-align: middle;
+    max-width: 30px;
+    max-height: 30px;
+    margin: -4px 0 0 10px;
+}
+/* 实名认证 end */
+
+
+/* 遮罩 start */
+.mask{
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.8);
+	position: fixed;
+	top: 0;
+	z-index: 20;
+	display: none;
+}
+.prompt{
+	width: 90%;
+	height: 200px;
+	position: absolute;
+	top: 50%;
+	margin-top: -100px;
+	left: 5%;
+	background: #fff url(../img/qin.png) no-repeat center 10px;
+	background-size: 70px;
+}
+.prompt > hr{
+	width: 80%;
+	height: 4px;
+	border: none;
+	margin-top: 38px;
+	background: #e5e5e5;
+}
+.text{
+	width: 80%;
+	font-size: 14px;
+	color: #7a7a7a;
+	text-align: center;
+	margin-top: 8px;
+}
+.text>span{
+	color: #73bcea;
+}
+.two{
+	margin-top: 8px !important;
+}
+.ts{
+	color: #e17171;
+	display: block;
+	width: 80%;
+	text-align: center;
+	margin-top: 17px;
+}
+.alertBtns{
+	width: 100%;
+	height: 40px;
+	background: #ccc;
+	margin-top: 20px;
+}
+.ui-altBtn{
+	width: 50%;
+	height: 40px;
+	background: #7dc5e6;
+	display: inline-block;
+	border: none;
+	float: left;
+	text-align: center;
+	line-height: 40px;
+	color: #fff !important;
+	font-size: 14px;
+}
+.ui-altBtn:nth-child(2){
+	background: #e6e6e6;
+	color: #999 !important;
+}
+.mask>img{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -62px;
+	margin-left: -62px;
+	width: 124px;
+	height: 124px;
+}
+.log-mask{
+	width: 100%;
+	height:100%;
+	position: fixed;
+	background: rgba(78,78,78,0.5);
+	top: 0;
+	left: 0;
+	display: none;
+	z-index: 20;
+}
+.warn{
+	width:80%;
+	height: 150px;
+	position: absolute;
+	left: 10%;
+	top:50%;
+	margin-top: -75px;
+	background: rgb(255,255,255);
+	display: block;
+}
+.wanr-text{
+	margin-top: 40px;
+	color: #7a7a7a;
+	text-align: center;
+	padding: 0 10px;
+	font-size: 12px;
+}
+.wanr-text>span{
+	color: orange;
+}
+.warn > span{
+	width: 50%;
+	height: 30px;
+	background: orange;
+	color: #fff;
+	text-align: center;
+	line-height: 30px;
+	display: inline-block;
+	margin-left: 25%;
+	margin-top: 40px;
+}
+/* 遮罩 end */
+#cr{
+	width:100%; font-size:12px; color:#999999; top:96%; text-align:center; position:absolute;
+}
+@media screen and (max-width: 480px){
+body{max-width:480px;}
+}
+@media screen and (max-width: 640px){
+body{max-width:640px;}
+}
+@media screen and (min-width: 640px){
+body{min-width:640px;}
+.box{width:640px; height:auto; position:relative;}
+#we{font-size:34px;}
+#mf input{font-size:34px;}
+#fx{font-size:24px; opacity:0.5; filter:alpha(opacity=50);}
+#btn input{font-size:34px;}
+}

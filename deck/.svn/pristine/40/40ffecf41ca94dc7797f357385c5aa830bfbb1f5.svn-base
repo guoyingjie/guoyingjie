@@ -1,0 +1,58 @@
+@font-face {
+  font-family: 'icon';
+  src: url('../font/icon.woff');
+  font-weight: normal;
+  font-style: normal;
+}
+[class^="icon-"],
+[class*=" icon-"] {
+    font-family: icon;
+    font-weight: normal;
+    font-style: normal;
+    text-decoration: inherit;
+    -webkit-font-smoothing: antialiased;
+    *margin-right: .3em;
+    display: inline;
+    width: auto;
+    height: auto;
+    line-height: normal;
+    vertical-align: baseline;
+    background-image: none;
+    background-position: 0% 0%;
+    background-repeat: repeat;
+    margin-top: 0;
+}
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  text-decoration: inherit;
+  display: inline-block;
+  speak: none;
+}
+
+.icon-user:before{
+	content: "\E003"
+}
+.icon-lock:before{
+	content: "\E004"
+}
+.icon-boy:before{
+	content: "\E001"
+}
+.icon-girl:before{
+	content: "\E002"
+}
+.icon-user:before{
+	content: "\E003"
+}
+.icon-eye:before{
+	content: "\E005"
+}
+.icon-verify:before{
+	content: "\E006"
+}
+.icon-true:before{
+	content: "\E007"
+}
+.icon-warn:before{
+	content: "\E009"
+}

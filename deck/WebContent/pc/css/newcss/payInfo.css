@@ -1,0 +1,54 @@
+.payInfo{
+	width: 749px;
+	height: 344px;
+	border: 1px solid #d2d2d2;
+	margin-top: 50px;
+	border-radius: 6px;
+	text-align: center;
+}
+.title{
+	width: 100%;
+	height: 38px;
+	background: #c7f3ff;
+	text-align: center;
+	line-height: 38px;
+	border-radius: 6px;
+	border-bottom: 1px solid #d2d2d2;
+	color: #424242;
+}
+.content{
+	width: 100%;
+	height: 288px;
+	overflow: auto;
+	position: relative;
+}
+.list{
+	width: 90%;
+}
+.list > li{
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	border-bottom: 1px solid #d2d2d2;
+}
+.list > li > p{
+	width: 33.33%;
+	float: left;
+	text-align: left;
+	font-size: 14px;
+}
+.list > li > p > span{
+	margin: 0 10px;
+}
+.list > li.weiX{
+	background: url(../../img/newimg/weix.png) no-repeat right;
+	background-size: 30px;
+}
+.list > li.aliPay{
+	background: url(../../img/newimg/pay.png) no-repeat right;
+	background-size: 30px;
+}
+.list > li.card{
+	background: url(../../img/newimg/card.png) no-repeat right;
+	background-size: 30px;
+}

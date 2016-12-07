@@ -1,0 +1,87 @@
+.forget{
+	width: 80%;
+	margin-top: 30px;
+	background: #fff;
+}
+.content{
+	width: 90%;
+	padding: 5%;
+	display: none;
+	box-shadow: 0 0 5px #999;
+	border-radius: 6px;
+	text-align: center;
+}
+.title{
+	color: #727272;
+	font-size: 14px;
+	text-align: center;
+}
+.content > input{
+	width: 75%;
+	height: 34px;
+	border: 1px solid #47a4dc;
+	box-shadow: 0 0 3px #ccc;
+	margin-top: 20px;
+	padding-left: 15%;
+}
+.content > p > input{
+	width: 85%;
+	height: 34px;
+	border: 1px solid #47a4dc;
+	box-shadow: 0 0 3px #ccc;
+	padding-left: 15%;
+}
+.toLogin{
+	text-align: center;
+	color: #727272;
+	margin-top: 10px;
+	font-size: .8em;
+}
+.toLogin > a{
+	color: #47a4dc;
+	text-decoration: underline;
+}
+.next{
+	width: 90%;
+	height: 34px;
+	color: #fff;
+	background: #47a4dc;
+	display: block;
+	text-align: center;
+	line-height: 34px;
+	margin-top: 20px;
+	font-size: 1em !important;
+	border-radius: 3px;
+	margin-bottom: 10px;
+}
+.phone{
+	background: url(../../img/newimg/phone.png) no-repeat 10px center;
+	background-size: 12px;
+}
+.pass,
+.inpass{
+	background: url(../../img/newimg/lock.png) no-repeat 10px center;
+	background-size: 12px;
+}
+.code{
+	background: url(../../img/newimg/code.png) no-repeat 10px center;
+	background-size: 12px;
+}
+.verify{
+	position: relative;
+	margin-top: 20px;
+}
+.codeBtn{
+	position: absolute;
+	width: 100px;
+	height: 24px;
+	font-size: .8em;
+	color: #fff;
+	text-align: center;
+	line-height: 26px;
+	right: 5px;
+	top: 6px;
+	background: #47a4dc;
+	border: none;
+	border-radius: 2px;
+}

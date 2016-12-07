@@ -1,0 +1,136 @@
+html,
+body{
+	height: 100%;
+	font-family: Microsoft Yahei, Arial;
+}
+*{
+	margin: 0 auto;
+	padding: 0;
+}
+a{
+	text-decoration: none;
+}
+ul,li{
+	list-style: none;
+}
+button,
+input{
+	-webkit-appearance: none;
+	border-radius: 0;
+	font-family: Microsoft Yahei, Arial;
+	font-size: .9em;
+	color: #333;
+}
+.banner{
+	width: 100%;
+	height: 120px;
+/*	background: url(../../img/newimg/banner.jpg) no-repeat center;*/
+	background-size: cover;
+}
+footer{
+	width: 100%;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	text-align: center;
+	font-size: .7em;
+	color: rgba(132,132,132,.45);
+	z-index: -1;
+}
+footer > .copyRight{
+	width: 100%;
+	height: 20px;
+	background: #eeeeee;
+	color: #878787;
+	line-height: 20px;
+	font-size: 1em;
+}
+footer > ul{
+	width: 100%;
+	height: 80px;
+	background: #ccc;
+}
+footer > ul > li{
+	width: 33.33%;
+	height: 30px;
+	text-align: center;
+	float: left;
+	color: #fff;
+	font-size: 1.2em;
+	padding-top: 50px;
+}
+footer > ul > li:nth-child(1){
+	background: #6cb6e3 url(../../img/newimg/jl.png) no-repeat center 10px;
+	background-size: 30px;
+}
+footer > ul > li:nth-child(2){
+	background: #59addf url(../../img/newimg/cz.png) no-repeat center 10px;
+	background-size: 30px;
+}
+footer > ul > li:nth-child(3){
+	background: #47a4dc url(../../img/newimg/go.png) no-repeat center 10px;
+	background-size: 30px;
+}
+
+ 
+
+
+
+
+
+.altMask{
+	width: 100%;
+	height: 100%;
+	background: rgba(119,119,119,.7);
+	left: 0;
+	top: 0;
+	position: fixed;
+	display: none;
+}
+.altMask > div{
+	width: 160px;
+	height: 160px;
+	background: rgba(255,255,255,.85);
+	position: absolute;
+	top: -160px;
+	border-radius: 6px;                                    
+	left: 50%;
+	margin-left: -80px;
+	text-align: center;
+}
+.altMask > div > span{
+	width: 50%;
+	height: 50%;
+	display: inline-block;
+	border-radius: 50%;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.true > span{
+	background: #47a4dc url(../../img/newimg/t.png) no-repeat center;
+	background-size: 50%;
+}
+.false > span{
+	background: #333 url(../../img/newimg/f.png) no-repeat center;
+	background-size: 50%;
+}
+.msg{
+	color: 333333;
+}
+@media screen and (min-width: 640px){
+	body{
+		width: 640px;
+		height: 900px;
+		margin: 0 auto;
+	}
+	
+}
+.gif{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	background: rgba(119,119,119,.4) url(../../img/newimg/img.gif) no-repeat center;
+	top: 0;
+	left: 0;
+	display: none;
+}

@@ -1,0 +1,36 @@
+.retro{
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+}
+.retro img{
+	width: 50%;
+	text-align: center;
+	margin: 43px auto 20px;
+}
+.retro-word{
+	color: #333;
+	font-size: 16px;
+	margin: 39px auto;
+}
+.prepaid{
+	width: 80%;
+	height: 43px;
+	line-height: 40px;
+	color: #fff;
+	font-size: 18px;
+	background: #46b7e9;
+	border: none;
+	border-radius: 5px;
+}
+.buy-package{
+	width: 80%;
+	height: 43px;
+	line-height: 40px;
+	color: #fff;
+	font-size: 18px;
+	background: #46b7e9;
+	border: none;
+	border-radius: 5px;
+	margin-top: 20px;
+}

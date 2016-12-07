@@ -1,0 +1,77 @@
+.box{
+	width: 528px;
+	height: 300px;
+}
+.content{
+	width: 526px;
+	height: 255px;
+	border: 1px solid #d2d2d2;
+	margin-top: 50px;
+	border-radius: 6px;
+	text-align: center;
+}
+.title{
+	width: 100%;
+	height: 38px;
+	background: #c7f3ff;
+	text-align: center;
+	line-height: 38px;
+	border-radius: 6px;
+	border-bottom: 1px solid #d2d2d2;
+	color: #424242;
+}
+.upImg{
+	margin-top: 80px;
+	display: inline-block;
+	padding: 10px 20px;
+	border: 1px solid #a7a7a7;
+	border-radius: 6px;
+	font-size: 14px;
+	line-height: 20px;
+	cursor: pointer;
+}
+.upImg > span{
+	color: #47a4dc;
+	font-size: 25px;
+	line-height: 20px;
+}
+.zhichi{
+	margin-top: 10px;
+	color: #838383;
+	font-size: 14px;
+}
+.btns{
+	text-align: center;
+	margin-top: 10px;
+}
+.btns > span{
+	width: 116px;
+	height: 37px;
+	display: inline-block;
+	border-radius: 3px;
+	text-align: center;
+	line-height: 37px;
+	font-size: 14px;
+	cursor: pointer;
+}
+.cancel{
+	width: 114px;
+	height: 35px;
+	border: 1px solid #a7a7a7;
+	margin-right: 50px;
+	color: #6e6e6e;
+}
+.confirm{
+	background: #47a4dc;
+	color: #fff;
+	margin-left: 50px;
+}
+.photo{
+	width: 120px;
+	height: 120px;
+	display: inline-block;
+	border-radius: 50%;
+	background: #ccc;
+	margin-top: 20px;
+	display: none;
+}

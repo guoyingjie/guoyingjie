@@ -1,0 +1,281 @@
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.Date"%>
+<c:set var="basePath" value="${pageContext.request.contextPath}" />
+<c:set var="pcPath" value="http://oss.kdfwifi.net/deck/pc" />
+<c:set var="pcPath1" value="${basePath}/pc" />
+<!DOCTYPE html>
+<html>
+<%@ page import="com.broadeast.util.PropertiesParam"%>
+<%
+	String getTimestamp = PropertiesParam.VERSIONS;
+%>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<title>登录</title>
+
+<link rel="stylesheet"
+	href="${pcPath}/css/newcss/public.css?<%=getTimestamp %>" />
+<link rel="stylesheet"
+	href="${pcPath}/css/newcss/pclogin.css?<%=getTimestamp %>" />
+</head>
+<script type="text/javascript">
+	var basePath="${basePath}";
+	var id="${siteMac}";
+	var gw_id="${gw_id}";
+	var mac="${clientMac}";
+	var ip="${clientIp}";
+	var url="${fromUrl}";
+	var fromFw="${fromFw}";
+	var gw_address="${gw_address}";
+	var gw_port="${gw_port}";
+	var sitename = "${site.site_name}";
+</script>
+<body oncontextmenu=self.event.returnValue=false>
+	<div class="title-cont">
+		<h1 class="welcome-word">欢迎使用${site.site_name}Wi-Fi</h1>
+	</div>
+	<div class="wrap">
+		<!--头部轮播图-->
+		<p class="notice">
+			<img src="${pcPath}/img/newimg/horn.png" />&nbsp;<i>新用户可免费试用${site.is_probative}小时</i>
+		</p>
+		<div class="top-nav">
+			<ul class="bannerurl">
+				<!-- 这里存放banner的地方 -->
+				<%-- <li><a><img src="${basePath}/mobile/img/newimg/banner01.jpg"><h3></h3></a></li>
+				<li><a><img src="${basePath}/mobile/img/newimg/banner02.jpg"><h3></h3></a></li>
+				<li><a><img src="${basePath}/mobile/img/newimg/banner03.jpg"><h3></h3></a></li>
+				<li><a><img src="${basePath}/mobile/img/newimg/banner01.jpg"><h3></h3></a></li> --%>
+			</ul>
+			<input type="hidden" value="${bannerUrl}" id="banner" />
+		</div>
+		<!--主体登陆内容-->
+		<section class="mian-cont">
+			<!--登录首页-->
+			<!--修改账号-->
+			<div class="userMsg" style="display: none;">
+				<input type="hidden" value="${proUser.userName}" id="username" />
+				<p class="user_info get-method">使用手机号</p>
+				<p class="user_info tel-info" id="newphone"></p>
+				<p class="user_info login-btn">
+					<span class="change-to left_btn">切换账号</span>
+					<button class="logon_to right_btn">登 录</button>
+				</p>
+				<p class="serve-term"><img src="${pcPath}/img/newimg/tip.png" />登录视为您已同意 <i class="terms"><<服务条款>></i></p>
+			</div>
+			<div class="userMsg" style="display: none;">
+				<p class="user_info get-method">输入手机号即可轻松上网</p>
+				<p class="user_info tel-input">
+					<input onkeyup="this.value=this.value.replace(/[^0-9A-Ba-b]/g,'')" type="text" maxlength="12" class="uPhone" placeholder="输入手机号即可轻松上网" id="changenums" />
+				</p>
+				<p class="advice-word">建议使用自己的手机号登录，您将获得更多的权益和服务</p>
+				<button id="whether-login" class="no-login">登 录</button>
+				<p class="serve-term"><img src="${pcPath}/img/newimg/tip.png" />登录视为您已同意 <i class="terms"><<服务条款>></i></p>
+			</div>
+			<!--已注册-->
+			<div class="userMsg" style="display: none;">
+				<p class="user_info get-method">输入手机号即可轻松上网</p>
+				<p class="user_info tel-input"
+					style="border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;">
+					<input type="text" maxlength="12" class="regist-user" placeholder="输入手机号即可轻松上网" id="resterName" />
+					<img class="has-regist" src="${pcPath}/img/newimg/telture.png">
+				</p>
+				<p class="user_info pass-input">
+					<input onkeyup="this.value=this.value.replace( /\s+/g,'')" type="password" maxlength="20"   class="login-pass" 	placeholder="请输入登录密码" />
+					<span class="pass-view"><img src="${pcPath}/img/newimg/view.png" alt="切换" /></span>
+				</p>
+				<p class="find_pass">
+					<button id="findpaswod">找回密码</button>
+				</p>
+				<button class="has-login pass-login" id="regseterLogin">登 录</button>
+			</div>
+			<!--找回密码-->
+			<div class="userMsg" style="display: none;">
+				<p class="user_info get-method">请输入您手机验证码</p>
+				<p class="user_info get-Verification">
+					<input onkeyup="this.value=this.value.replace(/\D/g,'')" type="tel" class="coded-in" placeholder="请输入手机验证码" />
+					<button class="get-code" id="codeIn" >获取验证码</button>
+				</p>
+				<p class="newadvice-word">客服绝不会索取此验证码，请勿告知他人</p>
+				<p class="user_info login-btn">
+					<span class="return-to left_btn">返 回 登 录</span>
+					<button class="next_to right_btn">下 一 步</button>
+				</p>
+			</div>
+			<!--设置新密码-->
+			<div class="userMsg" style="display: none;">
+				<p class="user_info get-method">请设置您的新密码</p>
+				<p class="user_info new-pass">
+					<input   type="password" maxlength="20" onkeyup="this.value=this.value.replace( /\s+/g,'')" class="newPass" placeholder="6位以上数字或字母" />
+				</p>
+				<p class="user_info new-pass1"><input onkeyup="this.value=this.value.replace( /\s+/g,'')" type="password" maxlength="20" class="newPass1" placeholder="请确认您的密码"/></p>
+				<p class="user_info login-btn">
+					<span class="return-to left_btn">返 回 登 录</span>
+					<button class="complete right_btn">完 成</button>
+				</p>
+			</div>
+			<!--未注册新用户 index为5-->
+			<div class="userMsg" style="display: none;">
+				<p class="user_info get-method">输入手机号即可轻松上网</p>
+				<p class="user_info newtel-input">
+					<input onkeyup="this.value=this.value.replace(/[^0-9A-Ba-b]/g,'')" type="tel" class="noregist-user" placeholder="请输入手机号" maxlength="12" id="nouser" />
+				    <img class="no-regist" src="${pcPath}/img/newimg/telerror.png">
+				</p>
+				<p class="advice-word">建议使用自己的手机号登录，您将获得更多的权益和服务</p>
+				<button class="get-linepass">获 取 上 网 密 码</button>
+			</div>
+			<!--未注册用户获取密码-->
+			<div class="userMsg" style="display: none;">
+				<p class="user_info get-method">输入手机号即可轻松上网</p>
+				<p class="user_info newtel-input" style="border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;">
+					<input onkeyup="this.value=this.value.replace(/[^0-9A-Ba-b]/g,'')" type="tel" class="noregist-user" placeholder="请输入手机号" maxlength="12" id="getcodesUser" />
+			        <img class="no-regist" src="${pcPath}/img/newimg/telerror.png">
+				</p>
+				<p class="user_info newget-Verification">
+					<input onkeyup="this.value=this.value.replace(/\D/g,'')" maxlength="20" type="tel" placeholder="输入手机接收的登录密码" class="code-in" />
+					<button class="get-code" id="codeIn1">获取登录密码</button>
+				</p>
+				<p class="pass-tip">请填写短信收到的登录密码,您可到个人中心内进行修改</p>
+				<button class="has-login code-login">登 录</button>
+			</div>
+		</section>
+		<p class="errorP">
+			<span class="msg"></span>
+		</p>
+	</div>
+	<div class="logo-mark">
+		        本Wi-Fi由<img src="${pcPath}/img/newimg/login-logo.png" />提供技术支持
+	</div>
+	<!-- 多台登录div -->
+	<div class="log-mask">
+		<div class="warn">
+			<p class="wanr-text"></p>
+			<button id="sure">我知道了</button>
+		</div>
+	</div>
+	<!-- 多台登录div -->
+	<!-- 提示框 -->
+	<div class="altMask">
+		<div>
+			<span></span>
+			<p class="msg"></p>
+		</div>
+	</div>
+	 
+
+	<input type="hidden" value="${proUser.passWord}" id="tupian">
+	<input type="hidden" value="${UserName}" id="sonname">
+	<input type="hidden" value="${siteMac}" id="id" />
+	<input type="hidden" value="${clientMac}" id="mac" />
+	<input type="hidden" value="${clientIp}" id="ip" />
+	<input type="hidden" value="${fromUrl}" id="url" />
+	<input type="hidden" value="${have}" id="have" />
+	<input type="hidden" value="${site.is_probative}" id="trynum" >
+	<input type="hidden" value="${site.id}" id="siteId">
+	<input type="hidden" value="${type}" id="routerType">
+	<input type="hidden" value="" id="passwordMd5" />
+	<script type="text/javascript" src="http://oss.kdfwifi.net/js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="http://oss.kdfwifi.net/js/idangerous.swiper-2.0.min.js"></script>
+	<script type="text/javascript" src="${pcPath1}/js/newjs/pclogin.js?<%=getTimestamp %>"></script>
+	<script type="text/javascript">
+		var chillireturn = '<%=(String)request.getSession().getAttribute("chillilreturn")%>';
+		var username = '<%= (String)session.getAttribute("UserName")%>';
+		if(chillireturn !='null' && chillireturn.length>1){
+			var data=JSON.parse(chillireturn);
+			if(data.code == 201){
+				errorMsg(data.msg);
+			}else if(data.code == 205){
+				errorMsg(data.msg);
+			}else if(data.code == 209){
+				errorMsg(data.msg);
+			}else if(data.code == 202){
+			    window.location.href=basePath +"/w/toPay";
+		    }else if(data.code == 300){
+				var MAC=data.data[0].MAC.replace(/:/g,"");
+				var model=data.data[0].Terminal_device;
+				var obj= new repeatAlert();
+				if(model!=0){
+					obj.open("设备<span>"+model+" 设备地址"+MAC+"</span>正在使用该账号,是否继续登录!<br>(继续登录则设备<span>"+MAC+"</span>会强制下线)");
+				}else{
+					obj.open("设备<span>"+MAC+"</span>正在使用该账号,是否继续登录!<br>(继续登录则设备<span>"+MAC+"</span>会强制下线)");
+				}
+				$("#sure").click(function(){
+					if(username.indexOf('a')>-1||username.indexOf('b')>-1){
+						window.location.href=basePath+"/w/successCenter";			
+					}else{
+						Jump(data,successUrl,payurl);
+					}
+				});
+				$("#cancel").click(function(){
+					$(".log-mask").css('display','none');
+				}); 
+			}else if(data.code==203){
+				  window.location.href=basePath +"/w/jinggao";
+			}else if(data.code==200){
+				if(username.indexOf('a')>-1||username.indexOf('b')>-1){
+					window.location.href=basePath+"/w/successCenter";				
+				}else{
+					var successUrl="/w/goToWherePage";
+					var	payurl = "/w/toPay";
+					Jump(data,successUrl,payurl);
+				}
+			}else if(data.code == 301){
+				var obj= new repeatAlert();
+				var model=data.data;
+				var uamport = '3990';
+				var urllogoff = "http://logout";
+				if(model!=0){
+					obj.open("<h4 style='color:#47a4dc;height:25px;line-height:25px;vertical-align:middle;display:inline-block;'>"+
+							"<img src='${pcPath}/img/newimg/hint.png' style='width:20px;height:20px;float:left;margin-right:10px;margin-top:3px;' />该账号已登录！</h4><br/>请使用当前在线设备输入网址<span>"+
+							"http://logout/</span>退出登录，也可进入微信公众号更多服务中进行Wi-Fi下线操作");
+				}else{
+					obj.open("<h4 style='color:#47a4dc;height:25px;line-height:25px;vertical-align:middle;display:inline-block;'>"+
+							"<img src='${pcPath}/img/newimg/hint.png' style='width:20px;height:20px;float:left;margin-right:10px;margin-top:3px;' />该账号已登录！</h4>"+
+							"<br/>请使用当前在线设备输入网址<span>http://logout/</span>退出登录，也可进入微信公众号更多服务中进行Wi-Fi下线操作");
+				}
+				$("#sure").click(function(){
+					$(".log-mask").css('display','none');
+				    return;
+				});	
+				}else if(data.code == 302){
+					var obj= new repeatAlert();
+					var model=data.data;
+					var urllogoff = "http://10.5.50.1/logout";
+					if(model!=0){
+						obj.open("<h4 style='color:#47a4dc;height:25px;line-height:25px;vertical-align:middle;display:inline-block;'>"+
+								"<img src='${pcPath}/img/newimg/hint.png' style='width:20px;height:20px;float:left;margin-right:10px;margin-top:3px;' />该账号已登录！</h4>"+
+								"<br/>请使用当前在线设备输入网址<span>"+urllogoff+"</span>退出登录，也可进入微信公众号更多服务中进行Wi-Fi下线操作");
+					}else{
+						obj.open("<h4 style='color:#47a4dc;height:25px;line-height:25px;vertical-align:middle;display:inline-block;'>"+
+								"<img src='${pcPath}/img/newimg/hint.png' style='width:20px;height:20px;float:left;margin-right:10px;margin-top:3px;' />该账号已登录！</h4>"+
+								"<br/>请使用当前在线设备输入网址<span>"+urllogoff+"</span>退出登录，也可进入微信公众号更多服务中进行Wi-Fi下线操作");
+					}
+					$("#sure").click(function(){
+						$(".log-mask").css('display','none');
+						return;
+					});	
+				}else if(data.code == 303){
+					var obj= new repeatAlert();
+					var model=data.data;
+					var urllogoff = "http://1.0.0.0/logout";
+					if(model!=0){
+						obj.open("<h4 style='color:#47a4dc;height:25px;line-height:25px;vertical-align:middle;display:inline-block;'>"+
+								"<img src='${pcPath}/img/newimg/hint.png' style='width:20px;height:20px;float:left;margin-right:10px;margin-top:3px;' />该账号已登录！</h4>"+
+								"<br/>请使用当前在线设备输入网址<span>http://1.0.0.0/logout</span>退出登录，也可进入微信公众号更多服务中进行Wi-Fi下线操作");
+					}else{
+						obj.open("<h4 style='color:#47a4dc;height:25px;line-height:25px;vertical-align:middle;display:inline-block;'>"+
+								"<img src='${pcPath}/img/newimg/hint.png' style='width:20px;height:20px;float:left;margin-right:10px;margin-top:3px;' />该账号已登录！</h4>"+
+								"<br/>请使用当前在线设备输入网址<span>http://1.0.0.0/logout</span>退出登录，也可进入微信公众号更多服务中进行Wi-Fi下线操作");
+					}
+					$("#sure").click(function(){
+						$(".log-mask").css('display','none');
+						return;
+					});	
+				}
+			}
+	</script>
+</body>
+</html>

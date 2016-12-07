@@ -1,0 +1,144 @@
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.Date"%>
+<c:set var="basePath1" value="${pageContext.request.contextPath}" />
+<c:set var="basePath" value="http://oss.kdfwifi.net/deck/" />
+<c:set var="pcPath" value="${basePath}/pc" />
+<!DOCTYPE html>
+<html>
+<%@ page import="com.broadeast.util.PropertiesParam"%>
+<%
+	String getTimestamp = PropertiesParam.VERSIONS;
+%>
+<head>
+<meta charset="utf-8">
+<title>账号被锁定</title>
+<link rel="stylesheet" type="text/css"
+	href="${basePath}/mobile/css/newcss/common.css">
+<style type="text/css">
+body, html {
+	margin: 0px;
+	padding: 0px;
+	width:100%
+}
+
+.th {
+	width: 240px;
+	height: 240px;
+	color: #fff;
+	display: block;
+	background: #f06e64;
+	text-align: center;
+	border-radius: 50%;
+	font-size: 150px;
+	margin-top: 100px;
+	line-height: 260px;
+}
+
+h1 {
+	text-align: center;
+	margin-top: 30px;
+	font-weight: 400;
+	color: #595959;
+	font-size: 55px;
+}
+
+.text {
+	text-align: center;
+	color: #808080;
+	font-size: 34px;
+	margin-top: 80px;
+}
+
+.time {
+	color: green;
+	font-size: 45px;
+}
+
+.links {
+	text-align: center;
+	margin-top: 200px;
+}
+
+.links>span {
+	color: #47a4dc;
+	margin: 0 20px;
+	display: inline-block;
+	padding-left: 24px;
+	cursor: pointer;
+	font-size:38px;
+}
+
+.links>span:nth-child(1) {
+	background: url(${basePath}/pc/img/newimg/qh.png) no-repeat left;
+}
+
+.links>span:nth-child(2) {
+	background: url(${basePath}/pc/img/newimg/wh.png) no-repeat left;
+}
+.copyRights{
+	width: 100%;
+	height: px;
+	background: #eeeeee;
+	color: #878787;
+	line-height: 60px;
+	font-size: 1em;
+}
+#footer{
+	width: 100%;
+	height:60px;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	text-align: center;
+	font-size: 30px;
+	color: rgba(132,132,132,.45);
+	z-index: -1;
+}
+</style>
+</head>
+<body>
+	<div class="banner">
+		<%-- <c:if test="${!empty bannerUrl}">
+			<img src="${bannerUrl}" width="100%" />
+		</c:if>
+		<c:if test="${empty bannerUrl}">
+			<img src="${basePath}/mobile/img/newimg/banner.jpg" width="100%">
+		</c:if> --%>
+		<input type="hidden" value="${bannerUrl}" id="banner"/>
+	</div>
+	<span class="th">!</span>
+	<h1>您的账号被多台设备频繁登录</h1>
+	<p class="text">
+		账号存在风险，已被锁定，<span class="time"><c:if test="${!empty times}">${times}</c:if>
+			<c:if test="${empty times}">24小时</c:if></span>后自动恢复正常
+	</p>
+	<p class="links">
+		<span id="changeusernum">切换账号</span><span id="changepassword">修改密码</span>
+	</p>
+	<footer id="footer">
+		<p class="copyRights">KDFWIFI.COM 2013-2016 联系电话 400-666-0050</p>
+	</footer>
+	<script type="text/javascript" src="http://oss.kdfwifi.net/js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript">
+		var basePath = "${basePath1}";
+	</script>
+</body>
+<script type="text/javascript">
+	if(true){
+		$('.banner').css('background','url('+$('#banner').val()+') no-repeat center');
+		$('.banner').css('background-size','cover');
+	}
+	$(function() {
+		$("#changepassword").click(
+				function() {
+					window.location.href = basePath
+							+ '/ProtalUserManage/changePassword?jing=gao';
+				});
+		$("#changeusernum").click(function() {
+			window.location.href = basePath + '/w/changeNumber';
+		});
+	});
+</script>
+</html>

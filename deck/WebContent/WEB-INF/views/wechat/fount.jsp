@@ -1,0 +1,53 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.Date"%>
+<c:set var="basePath" value="${pageContext.request.contextPath}" />
+<c:set var="css" value="http://oss.kdfwifi.net/deck/wechat/css"/>
+<c:set var="img" value="http://oss.kdfwifi.net/deck/wechat/img/ziimg"/>
+<c:set var="js" value="${basePath}/wechat/js" />
+<!DOCTYPE html>
+<html>
+<head>
+<%@ page import="com.broadeast.util.PropertiesParam"%>
+<%
+	String getTimestamp = PropertiesParam.VERSIONS;
+%>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>创建子账号</title>
+    <link rel="stylesheet" type="text/css" href="${css}/newpublic.css?<%=getTimestamp %>"/>
+    <link rel="stylesheet" type="text/css" href="${css}/found.css?<%=getTimestamp %>">
+    <script type="text/javascript">
+    	var ctx = "${basePath}";
+    </script>
+</head>
+<body>
+
+    <div class="content">
+        <p class="user">子账号:  <span id="userName" class="blue">${sonname}</span></p>
+        <div class="input-row clearfix">
+            <label class="found-label">子账号密码:  </label>
+            <i class="clear" id="clear"></i>
+            <div class="myinput-div" style="">
+                <input id="pwd" class="myinput" required type="password" placeholder="请输入密码"/>
+            </div>
+        </div>
+        <div style="padding: 20px 0">
+            <button id="complete" class="btn-block blue-bg">完成创建</button>
+        </div>
+    </div>
+
+    <p class="tipText"><i class="icon icon-tip"></i> 子账号可辅助多终端同时登录使用</p>
+
+    <div id="errModel" style="display: none"><p id="errMsg">手机号错误</p></div>
+
+    <div class="footer">KDFWIFI.COM 2013-2016</div>
+<input type="hidden" value="${sonname}" id="sonname" />
+<input type="hidden" value="${siteId}" id="siteId" />
+<input type="hidden" value="${username}" id="username" />
+<input type="hidden" value="${openid}" id="openid" />
+</body>
+<script src="http://oss.kdfwifi.net/js/jquery-1.9.1.min.js"></script>
+<script src="${js}/found.js?<%=getTimestamp %>"></script>
+</html>

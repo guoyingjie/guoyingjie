@@ -1,0 +1,34 @@
+.weixPay{
+	width: 526px;
+	height: 255px;
+	border: 1px solid #d2d2d2;
+	margin-top: 50px;
+	border-radius: 6px;
+	text-align: center;
+	background: url(../../img/newimg/kwl.jpg) no-repeat center 70px;
+}
+.title{
+	width: 100%;
+	height: 38px;
+	background: #c7f3ff;
+	text-align: center;
+	line-height: 38px;
+	border-radius: 6px;
+	border-bottom: 1px solid #d2d2d2;
+	color: #424242;
+}
+.sm{
+	line-height: 44px;
+	color: #717171;
+}
+.back{
+	width: 174px;
+	height: 42px;
+	background: #47a4dc;
+	text-align: center;
+	line-height: 42px;
+	color: #fff;
+	display: block;
+	border-radius: 5px;
+	margin-top: 25px;
+}

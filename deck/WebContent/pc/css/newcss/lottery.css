@@ -1,0 +1,273 @@
+@media screen and (min-width: 320px) {
+	.lottery{
+		min-height: 500px;
+	}
+	}
+	@media screen and (max-width: 320px) {
+	.lottery{
+		min-height: 600px;
+	}
+	}
+/*注册页*/
+	
+.lottery{
+	position: relative;
+	margin: 0 auto;
+	text-align: center;
+	color: #363636;
+}
+.lo-pic{
+	margin: 0 auto;
+	margin-top: 10%;
+	width: 200px;
+}
+.last-btn{
+	width: 80%;
+	height: 50px;
+	line-height: 50px;
+	color: #fff;
+	text-align: center;
+	background: #1A9BD2;
+	border-radius: 5px;
+	border: none;
+	font-size: 1rem;
+	position: absolute;
+	bottom: 10%;
+	left: 50%;
+	margin-left: -40%;
+}
+.lo-tip{
+	margin:0 40px;
+	margin-top: 5%;
+	text-align: left;
+	display: inline-block;
+}
+.lo-tip span{
+	color: #1A9BD2;
+}
+/*选择成功*/
+.chose-true{
+	font-size: 1.5rem;
+	font-size: #333;
+}
+.lo-pic1,.lo-pic2{
+	width: 130px;
+	margin: 10% auto 20px;
+}
+.lo-tip1{
+	font-size: .8rem;
+	margin:0 40px;
+	margin-top: 5%;
+	text-align: left;
+	display: inline-block;
+}
+.lo-tip1 span{
+	color: #1A9BD2;
+}
+.lo-num{
+	width:90%;
+    height: 35px;
+    line-height: 35px;
+    display: inline-block;
+    text-align: left;
+}
+.lo-num li{
+	display: inline-block;
+    width: 14.28%;
+    height: 35px;
+    color: #fff;
+    text-align: center;
+}
+.lo-num li span{
+	width: 35px;
+	display: inline-block;
+	background: #1A9BD2;
+    border-radius: 5px;
+}
+/*双色球号码*/
+.num-show{
+	text-align: center;
+	display: block;
+	margin-top: 5%;
+}
+.ti-time{
+	color: #1A9BD2;
+}
+.time-item{
+	margin-bottom: 15px;
+	font-size: .8rem;
+}
+.num-title{
+	text-align: left;
+	margin-left: 2%;
+	margin-bottom: 5px;
+	font-size: .8rem;
+}
+.zs-time,.kj-time{
+	font-size: .8rem;
+}
+/*彩票券页面*/
+.lottery-list{
+	width: 100%;
+}
+.lottery-list li{ 
+	height: 110px;
+	margin: 10px 10px 0;
+	position: relative;
+	background: url(../../img/newimg/li-pic.png) left center no-repeat;
+	background-size: cover;
+}
+.lottery-list img{
+	width: auto;
+}
+.left-pic{
+	width: 28%;
+	float: left;
+	display: inline-block;
+}
+.left-pic img{
+	width: 75px;
+	margin: 17.5px auto;
+}
+.right-intro{
+	width: 72%;
+	float: right;
+	height: 110px;
+	padding: 17.5px 0;
+	text-align: left;
+}
+.right-intro p{
+	width: 100%;
+	height: 35px;
+	line-height: 35px;
+	display: inline-block;
+}
+.ll-mark{
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+.ll-mark img{
+	width: 65px;
+}
+.click-to{
+	position: absolute;
+	right: 10px;
+	bottom: 15px;
+	font-size: 3rem;
+	color: #1A9BD2;
+	width: 12px;
+	height: 12px;
+	border-top: 2px solid #1A9BD2;
+	border-right: 2px solid #1A9BD2;
+	border-bottom: none;
+	border-left: none;
+	transform: rotate(45deg);
+}
+/*对话框*/
+.customer-service{
+	width: 60px;
+    height: 60px;
+    background: #fff;
+    border-radius: 3px;
+    float: left;
+    text-align: center;
+    display: inline-block;
+    margin: 0px 20px;
+}
+.customer-service img{
+	width: 50px;
+	margin: 12px 5px;
+}
+.dia-list li{
+	margin-top: 20px;
+}
+.right-cont{
+	margin-left: 100px;
+	background: #fff;
+	border-radius: 5px;
+	color: #fff;
+	font-size: .8rem;
+	position: relative;
+	margin-right: 20px;
+}
+.tip-pic{
+	width: 12px;
+	height: 12px;
+	display: inline-block;
+	background: #00AAEF;
+	transform: rotate(45deg);
+	position: absolute;
+	left: -5px;
+	top: 20px;
+}
+.tip-pic img{
+	width: 10px;
+}
+.tp-word{
+	background: #00aaef;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	text-align: left;
+	padding: 10px 10px;
+	padding-bottom: 40px;
+}
+.receive-btn{
+	width: 90px;
+	height: 25px;
+	line-height: 25px;
+	background: #fff;
+	color: #00AAEF;
+	border-radius: 3px;
+	position: absolute;
+	right: 10px;
+	bottom: 35px;
+	font-size: .8rem;
+	text-align: center;
+	border: none;
+}
+.tail-time{
+	color: #999;
+	text-align: right;
+	padding: 5px 0;
+}
+.tt-name{
+	float: left;
+	margin-left: 10px;
+}
+.tt-time{
+	margin-right: 10px;
+}
+
+
+
+
+.msk{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,.6);
+	top: 0;
+	left: 0;
+	z-index: 999;
+	display: none;
+}
+
+.msk > div{
+	width: 80%;
+	position: absolute;
+	top: 30%;
+	left: 10%;
+	background: #fff;
+	padding: 12px 15px;
+	text-align: center;
+	color: #666;
+}
+.iknow{
+	width: 100px;
+	height: 26px;
+	background: #1A9BD2;
+	color: #fff;
+	border: none;
+	border-radius: 5px;margin-top: 8px;
+}

@@ -1,0 +1,175 @@
+body{
+	background: #f6f6f6;
+}
+header{
+	width: 100%;
+	height: 100px;
+	background: url(../img/banner.jpg) no-repeat center;
+	background-size: cover;
+	padding-top: 36px;
+}
+.photo{
+	width: 80px;
+	height: 80px;
+	display: block;
+	margin: 0 auto;
+	border-radius: 50%;
+	box-shadow: 0 1px 5px #999;
+	background: #fff url(../img/photo.png) no-repeat bottom center;
+	background-size: cover;
+}
+.integral{
+	margin: 10px auto;
+}
+.money{
+	font-size: 14px;
+	text-align: center;
+}
+.money > span{
+	color: #ff2400;
+}
+.lvjf{
+	width: 200px;
+	height: 26px;
+	margin-top: 6px;
+}
+.lvjf > li{
+	padding-right: 40px;
+	height: 26px;
+	float: left;
+	position: relative;
+}
+.lv{
+	margin-right: 20px;
+}
+.lv > span:nth-child(1),
+.jf > span:nth-child(1){
+	width: 48px;
+	height: 24px;
+	border-radius: 26px;
+	display: inline-block;
+	border: 1px solid #47a4dc;
+	color: #47a4dc;
+	text-align: center;
+	line-height: 26px;
+	float: left;
+	font-size: .8em;
+}
+.lv > span:nth-child(2),
+.jf > span:nth-child(2){
+	padding: 0 10px;
+	height: 26px;
+	min-width: 30px;
+	border-radius: 26px;
+	display: inline-block;
+	background: #47a4dc;
+	color: #fff;
+	text-align: center;
+	line-height: 26px;
+	font-size: .8em;
+	position: absolute;
+	top: 0;
+	left: 40px;
+}
+
+.links{
+	width: 100%;
+	border-bottom: 1px solid #d6d6d6;
+	margin-top: 20px;
+}
+.links a{
+	width: 100%;
+	height: 44px;
+	display: block;
+	background: #fff url(../img/brt.png) no-repeat 98% center;
+	background-size: 8px;
+	line-height: 45px;
+	color: #5d5d5d;
+	border-top: 1px solid #d6d6d6;
+}
+.links > a > span{
+	width: 30px;
+	height: 30px;
+	display: inline-block;
+	border-radius: 50%;
+	margin-top: 8px;
+	margin-left: 5px;
+	float: left;
+	margin-right: 10px;
+}
+.phone{
+	width: 120px !important;
+	float: right !important;
+	line-height: 30px;
+}
+.zh{
+	background: #00bff6 url(../img/zh.png) no-repeat center;
+	background-size: 20px;
+}
+.xx{
+	background: #3dcdb4 url(../img/xx.png) no-repeat center;
+	background-size: 20px;
+}
+.xg{
+	background: #ff464f url(../img/xg.png) no-repeat center;
+	background-size: 16px;
+}
+.lb{
+	background: #f8ab0d url(../img/lb.png) no-repeat center;
+	background-size: 16px;
+}
+.cp{
+	background: #f58b3d url(../img/cp.png) no-repeat center;
+	background-size: 20px;
+}
+.game{
+	background: #f58b3d url(../img/game.png) no-repeat center;
+	background-size: 50px;
+}
+.recomCode{
+	background: #f58b3d url(../img/code.png) no-repeat center;
+	background-size: 50px;
+}
+.congrats{
+	position: absolute;
+    top: 20%;
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+    z-index:1001;
+    display:none;
+    
+}
+.congrats p{
+	top:0;
+	margin:0 auto;
+	text-align:center;
+}
+.conimg1 img{
+	width:22px;
+	position:absolute;
+	right:30px;
+}
+.conimg2 img{
+	width:350px;
+	position:absolute;
+	text-align:center;
+	top:20%;
+	left:50%;
+	margin-left:-175px;
+}
+/*遮罩层*/
+.mask{
+	height:100%; 
+	width:100%; 
+	position:fixed;
+	top:0;
+	z-index:1000; 
+	 display:none; 
+} 
+.opacity{ 
+	opacity:0.4; 
+	filter: alpha(opacity=30); 
+	background-color:#000; 
+} 
+/*遮罩层*/

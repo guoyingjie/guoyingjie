@@ -1,0 +1,404 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+html{
+    margin: 0 auto;
+}
+body{
+	height: 100%;
+	font-family: "Microsoft Yahei";
+	font-size: 14px;
+	position: relative;
+    background: #fafafa;
+}
+
+/* ------------------登录、注册、找回密码---------------------*/ 
+/* 头部样式 */
+.header{
+    height:50px;
+    line-height:50px;
+    padding:0 15px;
+    width: 100%;
+    background: #e9e9e9;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+}
+.header>h1{
+    font-weight: 400;
+    font-size: 1.4em;
+    margin-bottom: -50px;
+    /*margin-left: 37%;*/
+    text-align: center;
+    color: #666;
+}
+.header>a{
+    color: #666;
+    float: left;
+    width: 22px;
+    height: 22px;
+    margin-top: 14px;
+    line-height: 22px;
+    text-align: center;
+    font-size: 1.5em;
+    display: block;
+    text-decoration: none;
+}
+.header>a.pers{
+    width: 80px;
+    font-size: 12px;
+    float:right;
+}
+.header>a.exit{
+    width: 40px;
+    float: right;
+    font-size: 1em;
+}
+/* 主体样式 */
+.logo{
+    width: 100%;
+    height: 60px;
+    background: url(../img/kdf.png) no-repeat center;
+    margin-top: 70px;
+}
+.ui_main{
+    width: 100%;
+    margin-bottom: 20px;
+}
+.ui_main.forg{
+    margin-top: 70px;
+}
+.ui_main.re{
+    margin-top: 70px;
+}
+.ui_main>.ui_form{
+    width: 100%;
+    height: auto;
+}
+.ui_inp{
+    width: 90%;
+    height: 50px;
+    background: #FAFAFA;
+    border-bottom: 1px solid #E6E6E6;
+    position:relative;
+    overflow: hidden;
+    margin-left: 5%;
+}
+.ui_inp>i{
+    position:absolute;
+    width:22px;
+    height:30px;
+    text-align: center;
+    line-height: 30px;
+    top: 10px;
+    display: inline-block;
+    color: #b2b2b2;
+    font-size: 1em;
+}
+
+.ui_inp>i.user{
+    background: url(../img/user.png) no-repeat center;
+    background-size: 80%;
+}
+.ui_inp>i.pwd{
+    background: url(../img/pwd.png) no-repeat center;
+    background-size: 80%;
+}
+.ui_inp>i.verify{
+    background: url(../img/yzm.png) no-repeat center;
+    background-size: 80%;
+}
+.ui_inp>i.ui-i{
+    color: #ccc;
+    right: 0px;
+    top: 15px;
+    font-size: 1.4em;
+}
+.ui_inp>input{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width:80%;
+    height: 100%;
+    padding-left:10%;
+    border:none;
+    background: none;
+    font-size: 1em;
+}
+.ui_inp>input.fn_v{
+    width: 55%;
+}
+.ui_dis{
+    padding: 2px 10px;
+    background: #e9e9e9;
+    font-size: 1em;
+    display: block;
+    color: #ff446c;
+    position: absolute;
+    right: 25px;
+    top: -25px;
+    display: block;
+}
+.esn{
+    width: 100%;
+    text-align: center;
+    color: #999;
+    margin-top: 30px;
+}
+.btn{
+    height: 45px;
+    width: 90%;
+    margin-left: 5%;
+    background: #dcdcdc;
+    border: none;
+    color: #fff;
+    border-radius: 3px;
+    font-size: 1.2em;
+}
+.ui_main.forg>form>.btn{
+    margin-top: 40px;
+}
+.btn.on{
+    background: skyblue;
+}
+.fn-btn{
+    width: 100px;
+    height: 40px;
+    right: 0;
+    position: absolute;
+    background: #b7dbea;
+    border: none;
+    top: 5px;
+    color: #fff;
+    border-radius: 2px;
+}
+.zc{
+    margin-top: 15px;
+    background: none;
+    border: 1px solid skyblue;
+    color: #666;
+    display: block;
+    text-align: center;
+    line-height: 47px;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+.rp{
+    margin-top: 15px;
+    float: right;
+    margin-right: 5%;
+    margin-bottom: 15px;
+    display: inline-block;
+    text-decoration: none;
+    color: #ffc48b;
+}
+/* 脚部样式 */
+footer.fixd{
+    font-size: 0.9em;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 15px;
+    color: #ccc;
+    position: fixed;
+    bottom: -10px;
+}
+footer.payfoot{
+    font-size: 0.9em;
+    width: 100%;
+    text-align: center;
+    margin-top: 40px;
+    color: #ccc;
+    position: none;
+}
+
+/* 一键登录 */
+.greet{
+    width: 100%;
+    margin-top: 5px;
+    height: 35px;
+    background: url(../img/wifi.png) no-repeat center;
+}
+.line{
+	width: 100%;
+	height: 80px;
+	background: url(../img/line.png) no-repeat center;
+	background-size: 100%;
+	margin-top: 35px;
+}
+.oauth{
+    width: 90%;
+    height: 50px;
+    background: #e8a005;
+    color: #fff;
+    display: block;
+    line-height: 50px;
+    text-align: center;
+    text-decoration: none;
+    margin-left: 5%;
+    margin-top: 25px;
+    font-size: 1.2em;
+}
+/* 个人中心 */
+.contener{
+    margin-top: 60px;
+    margin-left: 5%;
+    width: 90%;
+    background: #fcfcfc;
+    color: #666;
+    font-size: 1.2em;
+    line-height: 2em;
+}
+.contener>p{
+    width: 100%;
+    height: 50px;
+    border-bottom: 1px solid #e5e5e5;
+    line-height: 50px;
+    position: relative;
+}
+.contener>p>span,.contener>p>a{
+    float: right;
+}
+.contener>p:nth-child(1){
+    height: 50px;
+    color: #d9bd39;
+    line-height: 30px;
+    margin-top: 25px;
+}
+.contener>p:nth-child(1)>span{
+    font-size: 2.4em;
+    float: none;
+}
+.userName{
+	color: #e8a005;
+}
+.contener>p>a{
+    margin-top: 3px;
+}
+.timeRema>a{
+    color: skyblue;
+    background: none;
+    width: auto;
+    height: 26px;
+    font-size: 14px;
+    text-decoration: none;
+    border-bottom: 1px dashed skyblue;
+    position: absolute;
+    bottom: 14px;
+    right: 0;
+}
+.contener>p>a>i{
+    font-size: 1.5em;
+    color: skyblue;
+    text-decoration: none;
+    float:right;
+    margin-top:8px;
+}
+.changeLink>a{
+	width:100%;
+	display: inline-block;
+	text-decoration: none;
+	color:#666;
+	line-height:45px;
+}
+.func{
+    margin-top: 50px;
+    margin-left: 5%;
+    width: 90%;
+    background: #fcfcfc;
+    color: #666;
+    border-top: 1px solid #e5e5e5;
+}
+.func>a{
+    height: 48px;
+    border-bottom: 1px solid #e5e5e5;
+    line-height: 50px;
+    font-size: 1.2em;
+    display: block;
+    color: #666;
+    text-decoration: none;
+    width: 100%;
+}
+/* 弹出页特效 */
+.mask{
+    width: 100%;
+    height:100%;
+    background: rgba(0,0,0,0.6);
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: none;
+    overflow: hidden;
+    z-index: 10;
+}
+.warn{
+	width:80%;
+	height: 150px;
+	position: absolute;
+	left: 10%;
+	top:50%;
+	margin-top: -75px;
+	background: rgb(255,255,255);
+	display: none;
+}
+.wanr-text{
+	margin-top: 40px;
+	color: #7a7a7a;
+	text-align: center;
+	padding: 0 10px;
+	font-size: 12px;
+}
+.wanr-text>span{
+	color: orange;
+}
+.buttons{
+	width: 100%;
+	height: 40px;
+	position: absolute;
+	bottom: 0;
+}
+.buttons>button{
+	width:50%;
+	height: 40px;
+	float:left;
+	background: #efefef;
+	color: #666;
+	border: none;
+	font-family: Microsoft Yahei;
+	font-size: 14px;
+}
+.buttons>button:nth-child(2){
+	float:right;
+	background: none;
+	border: 1px solid #efefef;
+	color: skyblue;
+}
+.hint{
+    width: 150px;
+    height: 60px;
+    background: url(../img/hint.png) no-repeat;
+    background-size: 150px;
+    position: absolute;
+    right: 0;
+    top: 10px;
+    display: none;
+}
+.clos{
+    width: 25px;
+    height: 25px;
+    background: url(../img/clos.png) no-repeat;
+    border: none;
+    background-size: 25px;
+    position: absolute;
+    bottom: 0;
+    right: 12px;
+}
+@media screen and (max-width: 420px){body{}
+html,body{width:100%; font-size: 14px;}
+}
+@media screen and (min-width: 640px){body{}
+html,body{width:640px; font-size: 24px;}
+}

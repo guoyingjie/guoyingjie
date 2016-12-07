@@ -1,0 +1,66 @@
+header{
+	width: 100%;
+	height: 48px;
+	background: #47a4dc;
+	text-align: center;
+	line-height: 48px;
+	color: #fff;
+	position: relative;
+}
+.goBack{
+	width: 30px;
+	height: 48px;
+	display: inline-block;
+	background: url(../../img/newimg/lt.png) no-repeat 10px center;
+	background-size: 12px;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.qd{
+	width: 50px;
+	text-align: center;
+	line-height: 48px;
+	height: 48px;
+	display: inline-block;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+.change{
+	width: 90%;
+	border: 1px solid #47a4dc;
+	height: 40px;
+	box-shadow: 0 0 5px #ccc;
+	margin-top: 20px;
+	position: relative;
+	background: #fff;
+}
+.change > label{
+	width: 24%;
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+	color: #6f6f6f;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.change > input{
+	width: 76%;
+	height: 100%;
+	background: none;
+	border: none;
+	padding-left: 24%;
+}
+.change > span{
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	background: #cdcdcd url(../../img/newimg/f.png) no-repeat center;
+	background-size: 10px;
+	display: inline-block;
+	top: 10px;
+	right: 8px;
+	border-radius: 50%;
+}

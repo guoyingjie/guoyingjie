@@ -1,0 +1,169 @@
+header{
+	width: 100%;
+	height: 100px;
+	background: #f6f6f6;
+}
+.photo{
+	width: 60px;
+	height: 60px;
+	display: inline-block;
+	float: left;
+	margin: 20px 20px;
+	border-radius: 50%;
+	box-shadow: 0 1px 5px #999;
+	background: #fff url(../img/photo.png) no-repeat bottom center;
+	background-size: cover;
+}
+.userInfo{
+	float: left;
+	margin-top: 20px;
+	height: 80px;
+	width: 67%;
+	position: relative;
+}
+.name{
+	color: #333;
+	font-weight: bold;
+	font-size: 14px;
+	line-height: 28px;
+}
+.name > span{
+	font-weight: normal;
+	margin-left: 10px;
+}
+.balance{
+	margin-top: 12px;
+	background: url(../img/balance.png) no-repeat left;
+	background-size: 12px;
+	text-indent: 15px;
+	font-size: 14px;
+	color: #333;
+	line-height: 28px;
+}
+.balance > span{
+	color: #ff8400;
+}
+.msmq{
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	background: red;
+	color: #fff !important;
+	text-align: center !important;
+	line-height: 20px;
+	border-radius: 50%;
+	font-size: .7em;
+	float: right;
+	margin-right: 30px;
+	text-indent: 0 !important;
+	font-style: normal;
+}
+.goPer{
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	position: absolute;
+	top: 30px;
+	right: 0;
+	background: url(../img/brt.png) no-repeat center;
+	background-size: 13px;
+}
+.surplus{
+	width: 90%;
+	height: 110px;
+	margin-top: 20px;
+}
+.tit{
+	height: 30px;
+	font-size: 1em;
+	line-height: 30px;
+}
+.tit > span{
+	width: 30px;
+	height: 30px;
+	background: #1a9bd2;
+	display: inline-block;
+	float: left;
+	border-radius: 50%;
+	margin-right: 10px;
+	position: relative;
+}
+.tit > span:before{
+	content: '剩';
+	color: #fff;
+	font-size: 15px;
+	text-align: center;
+	line-height: 22px;
+	width: 22px;
+	height: 22px;
+	display: inline-block;
+	border-radius: 50%;
+	position: absolute;
+	border: 2px solid #fff;
+	background: #1a9bd2;
+	top: 2px;
+	left: 2px;
+}
+.time,
+.gprs{
+	width: 88%;
+	padding-left: 12%;
+	height: 30px;
+	margin-top: 10px;
+	background: url(../img/time.png) no-repeat left;
+	background-size: 25px;
+}
+.time > p,
+.gprs > p{
+	width: 100%;
+	background: #f6f6f6;
+	height: 100%;
+	position: relative;
+}
+.jd{
+	width: 24%;
+	height: 100%;
+	display: inline-block;
+	float: left;
+}
+.txt{
+	font-size: 1em;
+	position: absolute;
+	right: 0;
+	top: 0;
+	line-height: 30px;
+}
+.gprs{
+	background: url(../img/gprs.png) no-repeat left;
+	background-size: 25px;
+}
+.funcBtn{
+	width: 70%;
+	height: 110px;
+	margin-top: 80px;
+}
+.funcBtn > li{
+	width: 80px;
+	height: 110px;
+	text-align: center;
+	line-height: 30px;
+	float: left;
+
+}
+.funcBtn > li:nth-child(2){
+	/* background: url(../img/); */
+	float: right;
+}
+.funcBtn > li > p{
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+}
+.funcBtn > li:nth-child(1) > p{
+	background: #29b27a url(../img/cz.png) no-repeat center;
+	background-size: 30px;
+}
+.funcBtn > li:nth-child(2) > p{
+	background: #526788 url(../img/jl.png) no-repeat center;
+	background-size: 40px;
+}

@@ -1,0 +1,90 @@
+.forget{
+	width: 526px;
+	height: 255px;
+	border: 1px solid #d2d2d2;
+	margin-top: 50px;
+	border-radius: 6px;
+	text-align: center;
+}
+.title{
+	width: 100%;
+	height: 38px;
+	background: #c7f3ff;
+	text-align: center;
+	line-height: 38px;
+	border-radius: 6px;
+	border-bottom: 1px solid #d2d2d2;
+	color: #424242;
+}
+.phone,
+.code,
+.pass{
+	width: 90%;
+	height: 45px;
+	line-height: 45px;
+	margin-top: 25px;
+	font-size: 14px;
+	color: #6f6f6f;
+	position: relative;
+}
+.phone > input,
+.pass > input{
+	width: 339px;
+	height: 41px;
+	border: 2px solid #d7d7d7;
+	float: right;
+	border-radius: 5px;
+	padding-left: 20px;
+}
+.phone > input:focus,
+.code > input:focus,
+.pass > input:focus{
+	border: 2px solid #95d7ff;
+	box-shadow: 0 0 20px #ccc;
+}
+.code > input{
+	width: 214px;
+	height: 41px;
+	border: 2px solid #d7d7d7;
+	padding-left: 20px;
+	float: right;
+	border-radius: 5px;
+	margin-right: 12px;
+}
+.code > button{
+	width: 113px;
+	height: 45px;
+	background: #47a4dc;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	float: right;
+	cursor: pointer;
+}
+.next{
+	width: 110px;
+	height: 30px;
+	background: #47a4dc;
+	color: #fff;
+	display: inline-block;
+	text-align: center;
+	line-height: 30px;
+	font-size: 14px;
+	margin-top: 25px;
+	cursor: pointer;
+	border-radius: 3px;
+}
+label{
+	width: 80px;
+	display: inline-block;
+	text-align: left !important;
+}
+.msg{
+	position: absolute;
+	color: #ff8025;
+	font-size: 14px;
+	top: 45px;
+	left: 112px;
+	white-space:nowrap;
+	line-height: 20px;
+}

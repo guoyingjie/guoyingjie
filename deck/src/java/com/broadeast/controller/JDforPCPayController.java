@@ -1,0 +1,277 @@
+package com.broadeast.controller;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.broadeast.JD.AsynNotifyResponse;
+import com.broadeast.JD.BasePayOrderInfo;
+import com.broadeast.JD.JDBeanComment;
+import com.broadeast.bean.SitePriceConfigAll;
+import com.broadeast.entity.CloudSite;
+import com.broadeast.entity.PortalUser;
+import com.broadeast.entity.SiteCustomerInfo;
+import com.broadeast.entity.SitePaymentRecord;
+import com.broadeast.entity.SitePriceConfig;
+import com.broadeast.service.impl.JDNotifyService;
+import com.broadeast.service.impl.JdPayBankService;
+import com.broadeast.service.impl.SchoolPaymentService;
+import com.broadeast.service.impl.SitePaymentRecordsService;
+import com.broadeast.service.impl.SiteService;
+import com.broadeast.service.impl.UserService;
+import com.broadeast.util.BigDecimalUtil;
+import com.broadeast.util.ExecuteResult;
+import com.jd.jr.pay.gate.signature.util.BASE64;
+import com.jd.jr.pay.gate.signature.util.JdPayUtil;
+import com.jd.jr.pay.gate.signature.util.SignUtil;
+import com.util.thirdpay.Pay;
+import com.wap.wepaypc.model.BankCardJdConf;
+
+@Controller
+@RequestMapping("/pcQuickPayment")
+public class JDforPCPayController {
+
+	private static Logger logger = Logger.getLogger(JDforPCPayController.class);
+
+	@Autowired
+	private SchoolPaymentService schoolPaymentService;
+
+	@Autowired
+	private SitePaymentRecordsService sitePaymentRecordsService;
+
+	@Autowired
+	private SiteService siteService;
+
+	@Autowired
+	private UserService userService;
+
+	@Autowired
+	private JdPayBankService jdpayBankService;
+
+	@Autowired
+	private JDNotifyService jDNotifyService;
+
+	@Resource
+	private BankCardJdConf bankCardJdConf;
+
+	private String errorMsg = "好像出错了<br /><p><a href='javascript:history.back(-1);'>返回</a></p>";
+
+	/**
+	 * 京东快捷支付
+	 */
+	@RequestMapping("/pcPayment")
+	public String PcPayment(@RequestParam String nums,
+			@RequestParam String amount, @RequestParam String price_num,
+			@RequestParam String priceConfig,
+			@RequestParam(defaultValue = "0") String addMealNum,
+			@RequestParam(defaultValue = "0") String addMealUnit,
+			@RequestParam(defaultValue = "1") String mealType,
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		String version = "V2.0";
+
+		// 商户号
+		String merchantNum = bankCardJdConf.getMerchantNum();
+		// 支付成功 商户展示地址
+		String successCallbackUrl = bankCardJdConf.getSuccessCallbackUrl();
+		// 接收异步通知地址
+		String notifyUrl = bankCardJdConf.getNotifyUrl();
+		// 货币种类
+		String currency = "CNY";
+		// 交易金额
+		BigDecimal tradeAmount = BigDecimalUtil.multiply(
+				new BigDecimal(amount), 100);
+		int tAmount = tradeAmount.intValue();
+		Map<String, String> map = new HashMap<String, String>();
+		PortalUser user = (PortalUser) request.getSession().getAttribute(
+				"proUser");// 拿到当前的用户信息
+		SitePriceConfigAll siteConfigAll = (SitePriceConfigAll) request
+				.getSession().getAttribute("siteAll");// 拿到当前的场所的消费规则
+		if (user == null || siteConfigAll == null) {
+			return this.errorMsg;
+		}
+		// 抽取必填参数
+		map.put("userId", user.getId() + "");// 用户Id
+		map.put("storeId", siteConfigAll.getSiteInof().getId() + "");// 场所Id
+		map.put("tenantId", siteConfigAll.getSiteInof().getUser_id() + "");// 商户id
+		map.put("payType", priceConfig);// 场所收费配置Id
+		map.put("buyNum", nums);// 购买数量
+		map.put("amount", amount);// 总金额
+		map.put("priceNum", price_num);// 套餐
+		map.put("addMealNum", addMealNum);
+		map.put("addMealUnit", addMealUnit);
+		map.put("mealType", mealType);// 选择的套餐类型 1----时间，2-----流量
+		// 校验
+		String checkResult = schoolPaymentService.paramsCheck(map);
+		if ("ok".equals(checkResult)) {// 校验通过
+
+			SitePriceConfig scf = siteService.getSitePriceInfos(siteConfigAll
+					.getSiteInof().getId(),
+					Integer.parseInt(map.get("payType")));
+			// 日期加减 0按小时收费；1按天;2按月
+
+			// 根据和当前时间的比较计算到期时间
+			PortalUser pu = (PortalUser) request.getSession().getAttribute(
+					"proUser");
+			SiteCustomerInfo scii = siteService.getExpirationTimeByProuserid(
+					pu.getId(), siteConfigAll.getSiteInof().getId());
+			// 没缴过费的话
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			SimpleDateFormat orderfdf = new SimpleDateFormat("yyyyMMddHHmmss");
+			String riqi = siteService.getUserCustomer(scii, scf, map);
+			if ("1".equals(map.get("mealType"))) {// 用户购买的是时间套餐
+				map.put("expireDate", riqi);
+			} else {
+				map.put("expireFlow", riqi);
+			}
+			// 订单号
+			String out_trade_no = Pay.getUuidOrderNumFromUserId(map
+					.get("userId"));
+			// 交易名称
+			String subjectName = new String(request.getParameter("subject"));
+			// 场所名称
+			String siteName = siteService.getSiteName(siteConfigAll
+					.getSiteInof().getId());
+
+			map.put("priceName", subjectName);// 套餐名称
+			String subject = "校园卡会员按" + subjectName + "充值(" + siteName + ")";
+			// 交易时间
+			String tradeTime = orderfdf.format(new Date());
+			// 给token赋值
+			String token = pu.getId() + "";
+
+			// 保存支付信息
+			schoolPaymentService.savePaymentinfo(out_trade_no, map, 2);
+			BasePayOrderInfo basePayOrderInfo = JDBeanComment
+					.findBasePayOrderInfo(version, token, out_trade_no,
+							subject, tradeTime, String.valueOf(tAmount),
+							currency, successCallbackUrl, notifyUrl,
+							merchantNum, request.getRemoteAddr());
+			JDBeanComment.filterCharProcess(basePayOrderInfo);
+			String serverUrl = bankCardJdConf.getWangyinServerPayUrl();
+			String oriUrl = serverUrl;
+			String desKey = bankCardJdConf.getMerchantDESKey();
+			String priKey = bankCardJdConf.getRsaPrivateKey();
+
+			/*
+			 * String cert = CertUtil.getCert(); // 有证书则证书验证模式、无则配置模式 if (cert
+			 * != null && !cert.equals("")) { basePayOrderInfo.setCert(cert); }
+			 */
+			List<String> unSignedKeyList = new ArrayList<String>();
+			unSignedKeyList.add("sign");
+			basePayOrderInfo.setSign(SignUtil.signRemoveSelectedKeys(
+					basePayOrderInfo, priKey, unSignedKeyList));
+			byte[] key = BASE64.decode(desKey);
+			JDBeanComment.setValueToBasePayOrderInfo(basePayOrderInfo, key);
+			request.setAttribute("payOrderInfo", basePayOrderInfo);
+			request.setAttribute("payUrl", oriUrl);
+			return "pc/autoSubmit";
+		} else {// 校验不通过
+			return this.errorMsg;
+		}
+
+	}
+
+	/**
+	 * 京东支付异步通知
+	 * 
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping("/pcPayNotify")
+	@ResponseBody
+	public String payNotify(HttpServletRequest request,
+			HttpServletResponse response) {
+		try {
+			String deskey = bankCardJdConf.getMerchantDESKey();
+			String pubKey = bankCardJdConf.getRsaPublicKey();
+			StringBuilder sb = new StringBuilder();
+			try {
+				BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
+				String line = null;
+				while ((line = br.readLine()) != null) {
+					sb.append(line.trim());
+				}
+			} catch (IOException e) {
+				logger.error("没有获得请求流===" + e);
+				return "fail";
+			}
+			AsynNotifyResponse anRes = JdPayUtil.parseResp(pubKey, deskey,sb.toString().trim(), AsynNotifyResponse.class);
+			String orderNum = anRes.getTradeNum();// 异步通知订单号
+			String state = anRes.getStatus();// 状态
+			logger.error("订单号:" + orderNum + "----状态:" + state);
+			String result = jDNotifyService.jdPayNotify(orderNum);
+			return result;
+		} catch (Exception e) {
+			logger.error("支付结果通知接口异常。", e);
+			return "fail";
+		}
+
+	}
+
+	/**
+	 * 根据orderNum校验支付是否完成
+	 * 
+	 * @param orderNum
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping("/checkPayResult")
+	@ResponseBody
+	public String checkPayResult(@RequestParam String orderNum,
+			HttpSession session) {
+		ExecuteResult rs = new ExecuteResult();
+		PortalUser user = (PortalUser) session.getAttribute("proUser");// 添加用户到session
+		CloudSite site = (CloudSite) session.getAttribute("site");
+		SitePriceConfigAll siteConfigAll = (SitePriceConfigAll) session
+				.getAttribute("siteAll");// 添加场所所有收费规则session
+
+		SitePaymentRecord spr = sitePaymentRecordsService
+				.getSitePaymentRecordByTradeNum(orderNum, siteConfigAll
+						.getSiteInof().getId(), user.getId());
+		if (spr != null && spr.getIsFinish() == 1) {
+			rs.setCode(200);
+			sitePaymentRecordsService.updateIsFinish(orderNum);
+		} else {
+			rs.setCode(201);
+			rs.setMsg("支付未完成或状态未同步。");
+		}
+
+		return rs.toJsonString();
+	}
+
+	/**
+	 * 添加用户的交易
+	 * 
+	 * @param token
+	 * @param session
+	 */
+	@RequestMapping("/saveToken")
+	public void saveToken(@RequestParam String token, HttpSession session) {
+		PortalUser user = (PortalUser) session.getAttribute("proUser");// 添加用户到session
+		sitePaymentRecordsService.insertToken(token, user.getId());
+
+	}
+
+}

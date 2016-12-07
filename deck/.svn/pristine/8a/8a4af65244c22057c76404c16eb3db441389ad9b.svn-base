@@ -1,0 +1,128 @@
+body{
+	background: #f5f5f5;
+}
+header{
+	width: 100%;
+	height: 48px;
+	background: #47a4dc;
+	text-align: center;
+	line-height: 48px;
+	color: #fff;
+}
+.goBack{
+	width: 30px;
+	height: 48px;
+	float: left;
+	display: inline-block;
+	background: url(../../img/newimg/lt.png) no-repeat 10px center;
+	background-size: 12px;
+}
+.photo{
+	width: 80px;
+	height: 80px;
+	display: inline-block;
+	margin-top: 10px;
+	margin-left: -30px;
+	border-radius: 50%;
+	box-shadow: 0 1px 5px #999;
+	background: #fff url(../../img/newimg/photo.png) no-repeat bottom center;
+	background-size: 50px;
+}
+.userInfo{
+	width: 100%;
+
+}
+.userName{
+	margin-top: 50px;
+	text-align: center;
+	color: #5d5d5d;
+	height: 30px;
+	position: relative;
+}
+.userName > a{
+	width: 20px;
+	height: 20px;
+	background: #47a4dc url(../../img/newimg/rt.png) no-repeat center;
+	background-size: 6px;
+	display: inline-block;
+	border-radius: 50%;
+	position: absolute;
+	right: 10px;
+	top: 3px;
+}
+.live{
+	margin-top: 30px;
+	width: 60%;
+	height: 80px;
+}
+.live > p{
+	width: 40%;
+	height: 80px;
+	color: #8c8c8c;
+	text-align: center;
+}
+.live > p > span{
+	width: 100%;
+	height: 28px;
+	border-radius: 28px;
+	background: #47a4dc;
+	color: #fff;
+	display: inline-block;
+	margin-top: 20px;
+	line-height: 28px;
+}
+.lv{
+	float: left;
+}
+.jf{
+	float: right;
+}
+.links{
+	width: 100%;
+	border-bottom: 1px solid #d6d6d6;
+	margin-top: 20px;
+}
+.links a{
+	width: 100%;
+	height: 44px;
+	display: block;
+	background: #fff url(../../img/newimg/brt.png) no-repeat 98% center;
+	background-size: 8px;
+	line-height: 45px;
+	color: #5d5d5d;
+	border-top: 1px solid #d6d6d6;
+}
+.links > a > span{
+	width: 30px;
+	height: 30px;
+	display: inline-block;
+	border-radius: 50%;
+	margin-top: 8px;
+	margin-left: 5px;
+	float: left;
+	margin-right: 10px;
+}
+.zh{
+	background: #00bff6 url(../../img/newimg/zh.png) no-repeat center;
+	background-size: 20px;
+}
+.xx{
+	background: #3dcdb4 url(../../img/newimg/xx.png) no-repeat center;
+	background-size: 20px;
+}
+.xg{
+	background: #ff464f url(../../img/newimg/xg.png) no-repeat center;
+	background-size: 16px;
+}
+.lb{
+	background: #f8ab0d url(../../img/newimg/lb.png) no-repeat center;
+	background-size: 16px;
+}
+.cp{
+	background: #f58b3d url(../../img/newimg/cp.png) no-repeat center;
+	background-size: 20px;
+}
+.game{
+	background: #f58b3d url(../../img/newimg/game.png) no-repeat center;
+	background-size: 50px;
+}

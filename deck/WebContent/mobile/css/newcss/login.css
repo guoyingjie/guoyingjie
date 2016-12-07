@@ -1,0 +1,186 @@
+.login{
+	width: 78%;
+	box-shadow: 0 0 5px #999;
+	margin-top: 30px;
+	border-radius: 6px;
+	padding: 10px;
+	background: #fff;
+}
+.login > input{
+	width: 85%;
+	height: 34px;
+	border: none;
+	border-bottom: 1px solid #ccc;
+	padding-left: 15%;
+}
+.login > p > input{
+	width: 85%;
+	height: 34px;
+	border: none;
+	border-bottom: 1px solid #ccc;
+	padding-left: 15%;
+}
+.userName{
+	background: url(../../img/newimg/user.png) no-repeat 10px center;
+	background-size: 16px;
+	margin-bottom: 15px;
+}
+.userPass{
+	background: url(../../img/newimg/pass.png) no-repeat 10px center;
+	background-size: 16px;
+	margin-bottom: 20px;
+}
+.toLogin{
+	width: 100%;
+	height: 34px;
+	text-align: center;
+	line-height: 34px;
+	border: none;
+	background: #47a4dc;
+	color: #fff;
+	margin-bottom: 10px;
+	font-size: 1em !important;
+	border-radius: 3px;
+}
+.login > a{
+	width: 50%;
+	height: 30px;
+	line-height: 30px;
+	display: inline-block;
+	font-size: .8em;
+}
+.toForget{
+	text-align: left;
+	color: #727272;
+}
+.toRegister{
+	text-align: right;
+	color: #47a4dc;
+}
+.terms{
+	width: 83%;
+	margin-top: 20px;
+	color: #727272;
+	font-size: .8em;
+}
+.terms > a{
+	color: #47a4dc;
+}
+/*========涓ゅ彴璁惧鐧婚檰鍚屼竴涓处鍙锋椂鎻愮ず鐨勬牱寮�===================*/
+.log-mask{
+	width: 100%;
+	height:100%;
+	position: fixed;
+	background: rgba(78,78,78,0.5);
+	top: 0;
+	left: 0;
+	display: none;
+}
+.log-mask>p{
+	position: fixed;
+	width: 100%;
+	text-align: center;
+	color: rgba(255,255,255,0.7);
+	font-size: 16px;
+	top: 55%;
+}
+.warn{
+	width:80%;
+	height: 150px;
+	position: absolute;
+	left: 10%;
+	top:50%;
+	margin-top: -75px;
+	background: rgb(255,255,255);
+	display: none;
+}
+.wanr-text{
+	margin-top: 40px;
+	color: #7a7a7a;
+	text-align: center;
+	padding: 0 10px;
+	font-size: 12px;
+}
+.wanr-text>span{
+	color: orange;
+}
+.buttons{
+	width: 100%;
+	height: 40px;
+	position: absolute;
+	bottom: 0;
+}
+.buttons>button{
+	width:50%;
+	height: 40px;
+	float:left;
+	background: #efefef;
+	color: #666;
+	border: none;
+	font-family: Microsoft Yahei;
+	font-size: 14px;
+}
+.buttons>button:nth-child(2){
+	float:right;
+	background: none;
+	border: 1px solid #efefef;
+	color: skyblue;
+}
+/*=================================*/
+.gif{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	background: rgba(119,119,119,.4) url(../../img/newimg/img.gif) no-repeat center;
+	top: 0;
+	left: 0;
+	display: none;
+	background-size:75px 75px
+}
+
+
+
+.logMask{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	z-index: 2;
+	background: rgba(0,0,0,.3);
+	left: 0;
+	top: 0;
+	display: none;
+}
+.content{
+	width: 80%;
+	padding: 5%;
+	top: 25%;
+	left: 5%;
+	position: absolute;
+	background: #fff;
+	border-radius: 5px;
+}
+.content > h4{
+	width: 60%;
+	text-align: center;
+	background: url(../../img/newimg/hint.png) no-repeat left;
+	background-size: 14px;
+	color: #47a4dc;
+	font-weight: normal;
+	margin-bottom: 10px;
+}
+.content > p{
+	font-size: .8em;
+}
+.content > p > span{
+	color: #47a4dc;
+}
+.content > button{
+	width: 120px;
+	height: 32px;
+	color: #fff;
+	background: #47a4dc;
+	border: none;
+	margin-top: 15px;
+	display: block;
+	border-radius: 5px;
+}

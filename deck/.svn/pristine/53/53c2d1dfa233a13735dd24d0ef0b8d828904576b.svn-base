@@ -1,0 +1,201 @@
+var v="4.1.4";
+var num=Math.random();
+$(function(){
+	message();
+	var imgSrc = $('#phoneurl').val();
+	var weiSrc = $("#weixinurl").val();
+	if(imgSrc){
+		$('.photo').css('background','#fff url(http://oss.kdfwifi.net/user_pic/'+imgSrc+'?'+num+') no-repeat center');
+		$('.photo').css('background-size','cover');
+	}else if(weiSrc){
+		$('.photo').css('background','#fff url('+weiSrc+') no-repeat center');
+		$('.photo').css('background-size','cover');
+	}
+	$("#personGo").click(function(){
+		var userName= $("#username").val();
+		var siteId = $("#siteId").val();
+		var openid=$("#openid").val();
+	    window.location.href= ctx+"/weChatPublicNum/goToPerson?userName="+userName+"&siteId="+siteId+"&openId="+openid+"&v="+v;
+	});
+	
+	$("#message").click(function(){
+		var userName= $("#username").val();
+		window.location.href=ctx+"/ProtalUserManage/goToMessagePage?handleType=1"+"&userName="+userName+"&v="+v;
+	});
+	
+	$(".getOff").click(function(){
+		window.location.href=ctx+"/weChatPublicNum/getOff?siteId="+$("#siteId").val();
+	})
+})
+//判断是否有信息
+function message(){
+	var openid=$("#openid").val();
+	var siteId = $("#siteId").val();
+	$.ajax({
+		type:"post",
+		async:false,
+		url:ctx+"/weChatPublicNum/getUserMessage",
+		data:{
+			openId:openid,
+			siteId:siteId,
+			v:v,
+			num:num
+		},
+		success:function(data){
+			eval("data="+data);
+			if(data.code==0){
+				$(".msmq").css("display","none");
+			}else{
+				$(".msmq").text(data.code);
+			}
+			$(".balance").text("¥"+data.data.balance);
+			$("#weixinurl").val(data.data.weixinurl);
+			$("#phoneurl").val(data.data.imageUrl);
+			$("#userTel").text(data.data.nickname);
+			var username=$('#userTel').text();
+			if(""==username||null==username){
+				
+				var username = $("#username").val();
+				var name = username.substring(0,3); 
+				var end = username.substring(7,username.length);
+				var allname = name+"****"+end;
+				$('#userTel').html("("+allname+")");
+			}
+			$(".time .txt").text(data.data.allTimeAndFlow);
+			var SyTimeAndFlow=$(".time .txt").text();
+			if(SyTimeAndFlow==""||SyTimeAndFlow==null||SyTimeAndFlow==undefined){
+				$(".time .txt").text("正在加载数据···");
+			}
+			$(".gprs .txt").text(data.data.SyTimeAndFlow);
+			var SyTimeAndFlow=$(".gprs .txt").text();
+			if(SyTimeAndFlow==""||SyTimeAndFlow==null||SyTimeAndFlow==undefined){
+				$(".gprs .txt").text("正在加载数据···");
+			}
+			 $("#ratioFlow").val(data.data.bili.ratioFlow); 
+			 $("#ratioTime").val(data.data.bili.ratioTime);
+			 var ratioFlow = $("#ratioFlow").val(); 
+			 var ratioTime = $("#ratioTime").val();
+			 if(ratioTime==''){
+					ratioTime =0
+				}
+				if(ratioFlow==""){
+					ratioFlow = 0;
+				}
+				if(ratioFlow>1){
+					ratioFlow =1.00;
+				}
+			    if(ratioTime>1){
+			    	ratioTime=1.00;
+				}
+			    if(ratioFlow<0){
+					ratioFlow =0;
+				}
+			    if(ratioTime<0){
+			    	ratioTime=0;
+				}
+			    
+			changeColor(ratioTime,ratioFlow);//第一个代表时间，第二个代表流量
+		
+		}
+	});
+}
+
+function tiao(n){
+	if(n==1){
+		$('.three').removeClass('on');
+		$('.two').removeClass('on');
+		$('.tiao').animate({width:'15%'},200,function(){
+			$('.one').addClass('on');
+		});
+	}else if(n==2){
+		$('.three').removeClass('on');
+		$('.tiao').animate({width:'50%'},300,function(){
+			$('.two').addClass('on');
+		});
+	}else if(n==3){
+		$('.two').addClass('on');
+		$('.tiao').animate({width:'100%'},300,function(){
+			$('.three').addClass('on');
+		});
+	}
+}
+function boxMove(n){
+	tiao(n+2)
+	$('.box').animate({left:(-277*(n+1))+'px'},400,function(){
+		$('.content').addClass('big');
+		setTimeout(function(){
+			$('.content').removeClass('small');
+			$('.content').removeClass('big');
+		},400);
+	});
+}
+function coundDown(obj,n){
+	obj.css('background','#ccc');
+	obj.attr('disabled',true);
+	obj.text(n+'秒后重新获取');
+	var timer = setInterval(function(){
+		n--;
+		if(n==0){
+			clearInterval(timer);
+			obj.css('background','#47a4dc');
+			obj.attr('disabled',false);
+			obj.text('获取验证码');
+		}else{
+			obj.text(n+'秒后重新获取');
+		}
+	},1000);
+}
+function colors(n){
+	var red = '#ff464f';
+	var yello = '#ffba4d';
+	var green = '#30d9b3';
+	var blue = '#4dbdef';
+	if(n<=0.2){
+		return red;
+	}else if(n>0.2&&n<=0.5){
+		return yello;
+	}else if(n>0.5&&n<=0.8){
+		return green;
+	}else{
+		return blue;
+	}
+}
+function changeColor(n,m){
+	/*$('.time .zong').css('border-color',colors(n));
+	$('.time .plan').css('background',colors(n));
+	$('.time .plan').css('width',n*100+'%');
+	$('.gprs .zong').css('border-color',colors(m));
+	$('.gprs .plan').css('background',colors(m));
+	$('.gprs .plan').css('width',m*100+'%');*/
+	$('#timecolor').css('border-color',colors(n));
+	$('#timecolor').css('background',colors(n));
+	$('#timecolor').css('width',n*100+'%');
+	$('#flowcolor').css('border-color',colors(m));
+	$('#flowcolor').css('background',colors(m));
+	$('#flowcolor').css('width',m*100+'%');
+	
+}
+function msg(code,str){
+	$('.altMask > div').removeClass('true');
+	$('.altMask > div').removeClass('false');
+	$('.altMask').css('display','block');
+	$('.msg').text(str);
+	if(code==0){
+		$('.altMask > div').addClass('false');
+		$('.altMask > div').animate({top:'25%'},400);
+		setTimeout(function(){
+			$('.altMask > div').animate({top:'-160px'},200,function(){
+				$('.altMask').css('display','none');
+			});
+		},2900);
+	}else{
+		$('.altMask > div').addClass('true');
+		$('.altMask > div').animate({top:'25%'},400,function(){
+			setTimeout(function(){
+				$('.altMask > div').animate({top:'-160px'},400,function(){
+					$('.altMask').css('display','none');
+				});
+			},2900);
+		});
+	}
+}

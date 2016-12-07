@@ -1,0 +1,80 @@
+package com.broadeast.controller;
+
+import java.util.Date;
+import java.util.Random;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import com.broadeast.util.CRSendSms;
+
+
+@Controller
+@RequestMapping("/TelCodeManageSSS")
+public class SendRandCodeController {
+	private static Logger logger=Logger.getLogger(SendRandCodeController.class);
+	
+	@RequestMapping("sendTelCode")
+	@ResponseBody
+	public String sendTelCode(@RequestParam String tel,@RequestParam String mac, HttpServletRequest request,HttpSession session){
+		String randCode = randCode();
+		String sign = "宽东方";
+		String content = "";
+		int result = -1;
+		try {
+//			content = "(您的宽东方注册验证码为：" + randCode+ "，有效期5分钟，请勿泄露)";
+			content = "验证码：" + randCode+ "。欢迎您注册宽东方极速Wi-Fi上网帐号，此码5分钟内有效，请勿转发他人。";
+				
+				result = CRSendSms.sendSms(content, sign, tel);
+//				result = 0;
+				if(result==0){
+					session.setAttribute("randCode", randCode);
+					session.setAttribute("randCodeTime", new Date().getTime());
+				}
+		} catch (Exception e) {
+			logger.error("发送验证码失败", e);
+		}
+		return result+"";
+	}
+
+	//找回密码的验证码
+	@RequestMapping("findPasswordCode")
+	@ResponseBody
+	public  String findPasswordCode(@RequestParam String tel, HttpServletRequest request,HttpSession session){
+		String PasswordCode = randCode();
+		System.out.println(PasswordCode);
+		String sign = "宽东方";
+		String content = "";
+		int result = -1;
+		try {
+				content = "验证码：" + PasswordCode+ "。您正在使用宽东方的修改密码功能，需要进行校验，此码5分钟内有效，请勿转发他人。";
+				result = CRSendSms.sendSms(content, sign, tel);
+//				result = 0;
+				if(result==0){
+					session.setAttribute("PasswordCode", PasswordCode);
+					session.setAttribute("PasswordCodeTime", new Date().getTime());
+				}
+		} catch (Exception e) {
+			logger.error("发送验证码失败", e);
+		}
+		return result+"";
+	}
+	
+	/**
+	 * 生成4位随机数
+	 * 
+	 * @return
+	 */
+	private String randCode() {
+		String code = "";
+		for (int i = 0; i < 4; i++) {
+			Random rand = new Random();
+			code += rand.nextInt(9);
+		}
+		return code;
+	}
+}
